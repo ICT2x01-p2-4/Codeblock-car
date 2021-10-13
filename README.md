@@ -14,7 +14,7 @@
   - [ ] Process Plan
     - [ ] Gantt Chart timing change
     - [ ] Duration calculation
-- [] Tasks for Week 7
+- [ ] Tasks for Week 7
   - [ ] Class diagram (Dylan)
     - [ ] Planning classes
   - [ ] Component Diagram (Don)
