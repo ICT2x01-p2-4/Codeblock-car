@@ -10,7 +10,7 @@
   - [ ] M2 Formatting (Zuriel, rui ling) is like nit picking
     - [ ] Change the Headers
     - [ ] Check the grammar/spelling
-    - [X] Label the diagrams
+    - [ ] Label the diagrams
   - [ ] Process Plan
     - [ ] Gantt Chart timing change
     - [ ] Duration calculation
