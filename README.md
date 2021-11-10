@@ -1,11 +1,65 @@
 # Codeblock Car
+
 ## About
 Insert description here
 
-[TOCM]
-
 ------------
 # Installation Guide
+
+## 1. Install Python
+Ensure that [python](https://www.python.org/downloads/) is installed.
+
+## 2. Setup virtual environment
+> Windows
+```ps1
+# Test if python PATH configured correctly
+python --verison
+
+# Install virtualenv
+pip install virtualenv
+
+# Change directory to the project folder
+cd "PROJECT_ROOT_DIRECTORY"
+
+# Configure virtualenv
+python -m venv codeblock-car
+```
+
+> Linux/Mac OS
+```sh
+# Test if python PATH configured correctly
+python3 --verison
+
+# Install virtualenv
+pip install virtualenv
+
+# Change directory to the project folder
+cd "PROJECT_ROOT_DIRECTORY"
+
+# Configure virtualenv
+python3 -m venv codeblock-car
+```
+
+## 3. Configure Virtual Environment
+> Windows
+```ps1
+# Activate the virtual environment
+codeblock-car\Scripts\activate.bat
+
+# Install the requirements
+python -m pip install -r requirements.txt
+```
+
+> Linux/Mac OS
+```sh
+# Activate the virtual environment
+source codeblock-car/bin/activate
+
+# Install the requirements
+python -m pip install -r requirements.txt
+```
+
+## 4. Start the server
 TODO
 
 # Development Workflow
@@ -54,7 +108,7 @@ TODO
 
 # Changelog
 
-## v0.2
+## v0.0.2
 - Added license
 - Updated README
 	- Added workflow information
