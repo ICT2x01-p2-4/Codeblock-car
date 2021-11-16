@@ -108,13 +108,19 @@ TODO
 
 # Changelog
 
+## v0.0.3
+- Updated README
+  - Added install guide (Not configured yet)
+- Added config_guide
+  - Gives an overview of working with Django
+- Removed WORKFLOW.md (Already included in README)
+
 ## v0.0.2
 - Added license
 - Updated README
 	- Added workflow information
 	- Added headers to be filled in
 - Added .gitignore for vscode IDE
-
 
 ## v0.0.1
 - Initial creation of master branch
