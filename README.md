@@ -22,7 +22,7 @@ pip install virtualenv
 cd "PROJECT_ROOT_DIRECTORY"
 
 # Configure virtualenv
-python -m venv codeblock-car
+python -m venv cb-car
 ```
 
 > Linux/Mac OS
@@ -37,7 +37,7 @@ pip install virtualenv
 cd "PROJECT_ROOT_DIRECTORY"
 
 # Configure virtualenv
-python3 -m venv codeblock-car
+python3 -m venv cb-car
 ```
 
 ## 3. Configure Virtual Environment
@@ -58,6 +58,7 @@ source codeblock-car/bin/activate
 # Install the requirements
 python -m pip install -r requirements.txt
 ```
+> [Reconfiguring requirements.txt](https://code.visualstudio.com/docs/python/environments)
 
 ## 4. Start the server
 TODO
@@ -89,7 +90,7 @@ TODO
 - Check files that are tracked by git and ensure files that should not be tracked are added to gitignore
 
 ## Change tracking
-- Mention the file that was added/removed/updated
+- Mention the file that was `Added`/`Removed`/`Updated`
 - Mention the changes
 
 ## Before Commits
@@ -107,6 +108,15 @@ TODO
 ------------
 
 # Changelog
+
+## v0.1
+- Updated README
+  - Changed virtualenv naming to avoid conflicts with django project folder
+- Added requirements.txt
+- Added codeblockCar (django project)
+  - Configured central folder for maintaining all templates
+  - Added student app (comprises of student features)
+  - Added connections app (comprises of car connection features)
 
 ## v0.0.3
 - Updated README
