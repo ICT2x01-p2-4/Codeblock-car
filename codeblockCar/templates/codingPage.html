@@ -3,8 +3,30 @@
 <html>
     <head>
         <title>Coding Page - (Blockly)</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://unpkg.com/blockly/blockly.min.js"></script>    <!-- unpkg link using js script to the blockly library -->
+        <script src="blockly_compressed.js"></script>                       <!-- core blockly script -->
+        <script src="blocks_compressed.js"></script>                        <!-- core blocks set -->
+        <script src="msg/js/en.js"></script>                                <!-- Language for user meassages -->
     </head>
     <body>
         <h1>Testing coding page, YAY it worked!</h1>
+        <div id="blocklyDiv" style="height: 800px; width: 600px;">
+            <xml id="toolbox" style="display: none">
+                <block type="controls_if"></block>
+                <block type="controls_repeat_ext"></block>
+                <block type="logic_compare"></block>
+                <block type="math_number"></block>
+                <block type="math_arithmetic"></block>
+                <block type="text"></block>
+                <block type="text_print"></block>
+            </xml>
+        </div>
+        <script> 
+            // Script for the tool box for blockly
+            var workspace = Blockly.inject('blocklyDiv', { toolbox: document.getElementById('toolbox') } );
+
+        </script>
     </body>
 </html>
