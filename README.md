@@ -61,7 +61,11 @@ python -m pip install -r requirements.txt
 > [Reconfiguring requirements.txt](https://code.visualstudio.com/docs/python/environments)
 
 ## 4. Start the server
-TODO
+```sh
+# Start the server
+cd codeblockCar
+python manage.py runserver
+```
 
 # Development Workflow
 
