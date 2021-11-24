@@ -8,12 +8,17 @@
         <script src="https://unpkg.com/blockly/blockly.min.js"></script>    <!-- unpkg link using js script to the blockly library -->
         <script src="blockly_compressed.js"></script>                       <!-- core blockly script -->
         <script src="blocks_compressed.js"></script>                        <!-- core blocks set -->
+        <script src="en/compressed.js" type="text/javascript"></script>
+        
+        <script src="javascript_compressed.js"></script>                    <!-- blockly code translated into JavaScript for code generation -->
+        <script src="php_compressed.js"></script>                           <!-- blockly code translated into php for code generation -->
+        <script src="python_compressed.js"></script>                        <!-- blockly code translated into python for code generation -->   
         <script src="msg/js/en.js"></script>                                <!-- Language for user meassages -->
     </head>
     <body>
         <h1>Testing coding page, YAY it worked!</h1>
         <div id="blocklyDiv" style="height: 800px; width: 600px;">
-            <xml id="toolbox" style="display: none">
+            <xml id="toolbox" style="display: none" xmlns="https://developers.google.com/blockly/xml">
                 <block type="controls_if"></block>
                 <block type="controls_repeat_ext"></block>
                 <block type="logic_compare"></block>
@@ -21,6 +26,8 @@
                 <block type="math_arithmetic"></block>
                 <block type="text"></block>
                 <block type="text_print"></block>
+                <block type="lists_create_with"></block>
+                <block type="maze_moveForward"></block>
             </xml>
         </div>
         <script> 
