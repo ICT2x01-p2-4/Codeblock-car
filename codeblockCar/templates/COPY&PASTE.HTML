@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<!-- py manage.py runserver -->
+<!-- http://127.0.0.1:8000/codingPage/ -->
+
+
+<html>
+
+<head>
+    <title>Coding Page - (Blockly)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <!-- unpkg link using js script to the blockly library -->
+    <script src="Java_Script/blockly_compressed.js"></script> <!-- core blockly script -->
+    <script src="Java_Script/blocks_compressed.js"></script> <!-- core blocks set -->
+    <script src="javascript_compressed.js"></script>
+    <!-- blockly code translated into JavaScript for code generation -->
+    <script src="php_compressed.js"></script> <!-- blockly code translated into php for code generation -->
+    <script src="python_compressed.js"></script> <!-- blockly code translated into python for code generation -->
+    <script src="msg/js/en.js"></script> <!-- Language for user meassages -->
+</head>
+
+<body>
+    <h1>Testing coding page, YAY it worked!</h1>
+    <div id="blocklyDiv" style="height: 800px; width: 80%;">
+        <xml id="toolbox" style="display: none">
+            <block type="controls_if"></block>
+            <block type="controls_repeat_ext"></block>
+            <block type="logic_compare"></block>
+            <block type="math_number"></block>
+            <block type="math_arithmetic"></block>
+            <block type="text"></block>
+            <block type="text_print"></block>
+            <block type="lists_create_with"></block>
+            <block type="controls_repeat_ext">
+                <value name="TIMES">
+                    <shadow type="math_number">
+                        <field name="NUM">5</field>
+                    </shadow>
+                </value>
+            </block>
+        </xml>
+    </div>
+    <script>
+        // Script for the tool box for blockly
+        var workspace = Blockly.inject('blocklyDiv',
+            {
+                toolbox: document.getElementById('toolbox'),
+                zoom:
+                {
+                    controls: true,
+                    wheel: false,
+                    startScale: 1.0,
+                    maxScale: 3,
+                    minScale: 0.3,
+                    scaleSpeed: 1.2,
+                    pinch: true
+                },
+                trashcan: true
+            }
+        );
+    </script>
+</body>
+
+</html>
+
+<script src="{% static 'js/blockly_compressed.js' %}"></script> <!-- core blockly script -->
+<script src="{% static 'js/blocks_compressed.js' }"></script> <!-- core blocks set -->
+<script src="{% static 'js/javascript_compressed.js' %}"></script>
+<!-- blockly code translated into JavaScript for code generation -->
+<script src="{% static 'js/en.js' %}"></script> <!-- Language for user meassages -->

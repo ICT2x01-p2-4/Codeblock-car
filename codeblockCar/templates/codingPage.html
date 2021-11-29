@@ -1,39 +1,179 @@
 <!DOCTYPE html>
 
-<html>
-    <head>
-        <title>Coding Page - (Blockly)</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://unpkg.com/blockly/blockly.min.js"></script>    <!-- unpkg link using js script to the blockly library -->
-        <script src="blockly_compressed.js"></script>                       <!-- core blockly script -->
-        <script src="blocks_compressed.js"></script>                        <!-- core blocks set -->
-        <script src="en/compressed.js" type="text/javascript"></script>
-        
-        <script src="javascript_compressed.js"></script>                    <!-- blockly code translated into JavaScript for code generation -->
-        <script src="php_compressed.js"></script>                           <!-- blockly code translated into php for code generation -->
-        <script src="python_compressed.js"></script>                        <!-- blockly code translated into python for code generation -->   
-        <script src="msg/js/en.js"></script>                                <!-- Language for user meassages -->
-    </head>
-    <body>
-        <h1>Testing coding page, YAY it worked!</h1>
-        <div id="blocklyDiv" style="height: 800px; width: 600px;">
-            <xml id="toolbox" style="display: none" xmlns="https://developers.google.com/blockly/xml">
-                <block type="controls_if"></block>
-                <block type="controls_repeat_ext"></block>
-                <block type="logic_compare"></block>
-                <block type="math_number"></block>
-                <block type="math_arithmetic"></block>
-                <block type="text"></block>
-                <block type="text_print"></block>
-                <block type="lists_create_with"></block>
-                <block type="maze_moveForward"></block>
-            </xml>
-        </div>
-        <script> 
-            // Script for the tool box for blockly
-            var workspace = Blockly.inject('blocklyDiv', { toolbox: document.getElementById('toolbox') } );
+<!-- py manage.py runserver -->
+<!-- http://127.0.0.1:8000/codingPage/ -->
 
-        </script>
-    </body>
+
+<html>
+
+<head>
+    <title>Coding Page - (Blockly)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script> <!-- unpkg link using js script to the blockly library -->
+    
+</head>
+
+<body>
+    <h1>Testing coding page, YAY it worked!</h1>
+    <div id="blocklyDiv" style="height: 800px; width: 80%;">
+        <xml id="toolbox" style="display: none">
+            <block type="lists_create_with"></block>
+            <block type="controls_repeat_ext">
+                <value name="TIMES">
+                    <shadow type="math_number">
+                        <field name="NUM">5</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type = "forward"></block>
+            <block type="stop"></block>
+            <block type="left"></block>
+            <block type="right"></block>
+            <block type="forward_list"></block>
+            <block type="stop_list"></block>
+            <block type="left_list"></block>
+            <block type="right_list"></block>
+        </xml>
+    </div>
+    <script>
+        Blockly.Blocks['forward'] = {
+                init: function () {
+                    this.appendDummyInput()
+                        .appendField("Go Forward");
+                    this.setPreviousStatement(true, null);
+                    this.setNextStatement(true, null);
+                    this.setColour(120);
+                    this.setTooltip("");
+                    this.setHelpUrl("");
+                }
+            };
+
+            Blockly.Blocks['stop'] = {
+                init: function () {
+                    this.appendDummyInput()
+                        .appendField("Stop");
+                    this.setPreviousStatement(true, null);
+                    this.setNextStatement(true, null);
+                    this.setColour(345);
+                    this.setTooltip("");
+                    this.setHelpUrl("");
+                }
+            };
+
+            Blockly.Blocks['left'] = {
+                init: function () {
+                    this.appendDummyInput()
+                        .appendField("Turn Left")
+                        .appendField(new Blockly.FieldAngle(90), "Left");
+                    this.setPreviousStatement(true, null);
+                    this.setNextStatement(true, null);
+                    this.setColour(230);
+                    this.setTooltip("");
+                    this.setHelpUrl("");
+                }
+            };
+
+            Blockly.Blocks['right'] = {
+                init: function () {
+                    this.appendDummyInput()
+                        .appendField("Turn Right")
+                        .appendField(new Blockly.FieldAngle(90), "Right");
+                    this.setPreviousStatement(true, null);
+                    this.setNextStatement(true, null);
+                    this.setColour(165);
+                    this.setTooltip("");
+                    this.setHelpUrl("");
+                }
+            };
+
+            Blockly.Blocks['forward_list'] = {
+                init: function () {
+                    this.appendDummyInput()
+                        .appendField("Go Forward");
+                    this.setOutput(true, "Number");
+                    this.setColour(120);
+                    this.setTooltip("");
+                    this.setHelpUrl("");
+                }
+            };
+
+            Blockly.Blocks['stop_list'] = {
+                init: function () {
+                    this.appendDummyInput()
+                        .appendField("Stop");
+                    this.setOutput(true, "Number");
+                    this.setColour(345);
+                    this.setTooltip("");
+                    this.setHelpUrl("");
+                }
+            };
+
+            Blockly.Blocks['left_list'] = {
+                init: function () {
+                    this.appendDummyInput()
+                        .appendField("Turn Left")
+                        .appendField(new Blockly.FieldAngle(90), "Left");
+                    this.setOutput(true, "Number");
+                    this.setColour(230);
+                    this.setTooltip("");
+                    this.setHelpUrl("");
+                }
+            };
+
+            Blockly.Blocks['right_list'] = {
+                init: function () {
+                    this.appendDummyInput()
+                        .appendField("Turn Right")
+                        .appendField(new Blockly.FieldAngle(90), "Right");
+                    this.setOutput(true, "Number");
+                    this.setColour(165);
+                    this.setTooltip("");
+                    this.setHelpUrl("");
+                }
+            };
+        // Script for the tool box for blockly
+        var workspace = Blockly.inject('blocklyDiv',
+            {
+                toolbox: document.getElementById('toolbox'),
+                zoom:
+                {
+                    controls: true,
+                    wheel: false,
+                    startScale: 1.0,
+                    maxScale: 3,
+                    minScale: 0.3,
+                    scaleSpeed: 1.2,
+                    pinch: true
+                },
+                 grid: {
+                    spacing: 20,
+                    length: 4,
+                    colour: '#888',
+                    snap: false
+                },
+                
+                trashcan: true,
+                toolbox: toolbox,
+                collapse: false,
+                comments: false,
+                disable: false,
+                maxBlocks: Infinity,
+                horizontalLayout: false,
+                toolboxPosition: 'start',
+                css: true,
+                media: 'https://blockly-demo.appspot.com/static/media/',
+                rtl: false,
+                scrollbars: true,
+                sounds: true,
+                oneBasedIndex: true,
+                
+            }
+                
+            
+        );
+    </script>
+</body>
+
 </html>
