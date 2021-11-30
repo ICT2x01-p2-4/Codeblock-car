@@ -52,21 +52,21 @@
             <!--navigation-->
             <ul class="metismenu" id="menu">
                 <li>
-                    <a href="/dashboard">
+                    <a href="/">
                         <div class="parent-icon"><i class="bi bi-activity"></i>
                         </div>
                         <div class="menu-title">Dashboard</div>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/attendance">
                         <div class="parent-icon"><i class="bi bi-stopwatch"></i>
                         </div>
                         <div class="menu-title">Challenge</div>
                     </a>
                 </li>
                 <li>
-                    <a href="/tutorial">
+                    <a href="/leaves">
                         <div class="parent-icon"><i class="bi bi-calendar-week"></i>
                         </div>
                         <div class="menu-title">Tutorial</div>
@@ -78,47 +78,11 @@
         </aside>
     </div>
     <!--end sidebar -->
-    <div class="head">
-        <div class="jumbotron">
-            <h1 class="display-4 text-center">Challenge</h1>
-        </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Challenge ID</th>
-                    <th scope="col">Difficulty</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for challenge in challenges %}
-                <tr>
-                    <td>
-                        {{challenge.id}}
-                    </td>
-                    <td>
-                        {{challenge.diff}}
-                    </td>
-                    <td>
-                        
-                        <a href="edit/" class= "btn btn-success">Attempt</a>
-                        <!-- <button class="btn btn-warning" type="button">Edit</button>
-                        <button class="btn btn-danger" type="button">Delete</button> -->
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <!-- <div class="btn-holder">
-            
-            <a class= "btn btn-primary" href="create/" style="color: black; margin-left: 1050px;">Create New Challenge</a>
-        </div> -->
-
-    </div>
+    
 </body>
 
 <script>
-
+    
 </script>
 
 </html>

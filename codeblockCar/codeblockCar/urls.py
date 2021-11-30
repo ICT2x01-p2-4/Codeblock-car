@@ -18,7 +18,8 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
-    path('challenges/', include('challenges.urls')),
+    path('challenge/',include('challenge.url')),
     path('', RedirectView.as_view(url='index', permanent=True))
 ]

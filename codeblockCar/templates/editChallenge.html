@@ -80,45 +80,85 @@
     <!--end sidebar -->
     <div class="head">
         <div class="jumbotron">
-            <h1 class="display-4 text-center">Challenge</h1>
+            <h1 class="display-4 text-center">Edit Challenge</h1>
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Challenge ID</th>
-                    <th scope="col">Difficulty</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for challenge in challenges %}
-                <tr>
-                    <td>
-                        {{challenge.id}}
-                    </td>
-                    <td>
-                        {{challenge.diff}}
-                    </td>
-                    <td>
-                        
-                        <a href="edit/" class= "btn btn-success">Attempt</a>
-                        <!-- <button class="btn btn-warning" type="button">Edit</button>
-                        <button class="btn btn-danger" type="button">Delete</button> -->
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <!-- <div class="btn-holder">
-            
-            <a class= "btn btn-primary" href="create/" style="color: black; margin-left: 1050px;">Create New Challenge</a>
-        </div> -->
+        <select id="gridSize" class="gridSize" onchange="gridChange(this);" style="margin-left: 1050px;width: 200px;" >
+            <option value="3" style="text-align: center;">3 x 3</option>
+            <option value="5" style="text-align: center;">5 x 5</option>
+            <option value="7" style="text-align: center;">7 x 7</option>
+        </select>
+        <div id='gridSpace'></div>
 
+        <div>
+            <button class="btn btn-primary" type="button" style="margin-left: 1050px; width: 200px;">Save</button>
+        </div>
     </div>
+
 </body>
 
 <script>
+    var lastClicked;
+    createGrid();
+    let gridSize = document.querySelector('.gridSize');
+    gridSize.addEventListener('change', (event) => {
+        if ($(".grid")) {
+            $(".grid").remove();
+        }
+        createGrid();
+    })
 
+
+    function createGrid(e) {
+        var grid = clickableGrid($('#gridSize').val(), $('#gridSize').val(), function (el, row, col, i) {
+            console.log("You clicked on element:", el);
+            console.log("You clicked on row:", row);
+            console.log("You clicked on col:", col);
+            console.log("You clicked on item #:", i);
+
+            if ((row != 0 || col != 0) && (row != ($('#gridSize').val()-1) || col != ($('#gridSize').val()-1))) {
+                if (el.className == 'clicked')
+                    el.className = '';
+                else {
+                    el.className = 'clicked';
+                }
+            }
+
+        });
+        document.getElementById('gridSpace').appendChild(grid)
+    }
+
+
+
+    function clickableGrid(rows, cols, callback) {
+        var i = 0;
+        var grid = document.createElement('table');
+        grid.className = 'grid';
+        for (var r = 0; r < rows; ++r) {
+            var tr = grid.appendChild(document.createElement('tr'));
+            for (var c = 0; c < cols; ++c) {
+                var cell = tr.appendChild(document.createElement('td'));
+                if (i == 0) {
+                    cell.innerHTML = "Start"
+                    cell.bgColor = 'green'
+                    i++;
+                }
+                else if (i == (rows * cols) - 1) {
+                    cell.innerHTML = "End"
+                    cell.bgColor = 'red'
+                    i++;
+                }
+                else {
+                    cell.innerHTML = ++i;
+                }
+                cell.addEventListener('click', (function (el, r, c, i) {
+                    return function () {
+                        callback(el, r, c, i);
+                    }
+                })(cell, r, c, i), false);
+            }
+        }
+        return grid;
+    }
 </script>
 
 </html>
