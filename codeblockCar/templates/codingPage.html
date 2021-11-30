@@ -12,13 +12,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <script src="https://unpkg.com/blockly/blockly.min.js"></script> <!-- unpkg link using js script to the blockly library -->
-    
+
+    <script src="{% static 'blockly/blockly_compressed.js' %}"></script> <!-- core blockly script -->
+    <script src="{% static 'blockly/blocks_compressed.js' %}"></script> <!-- core blocks set -->
+    <script src="{% static 'blockly/javascript_compressed.js' %}"></script> <!-- blockly code translated into JavaScript for code generation -->
+    <script src="{% static 'blockly/msg/js/en.js' %}"></script> <!-- Language for user meassages -->
 </head>
 
 <body>
     <h1>Testing coding page, YAY it worked!</h1>
-    <div id="blocklyDiv" style="height: 800px; width: 80%;">
-        <xml id="toolbox" style="display: none">
+    <p>
+        <button onclick="showCode()">Show JavaScript</button>
+    </p>
+    <div id="blocklyDiv" style="height: 500px; width: 800px;">
+        <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
             <block type="lists_create_with"></block>
             <block type="controls_repeat_ext">
                 <value name="TIMES">
@@ -133,7 +140,9 @@
                     this.setHelpUrl("");
                 }
             };
-        // Script for the tool box for blockly
+       
+        
+       // Script for the tool box for blockly
         var workspace = Blockly.inject('blocklyDiv',
             {
                 toolbox: document.getElementById('toolbox'),
@@ -170,9 +179,8 @@
                 oneBasedIndex: true,
                 
             }
-                
-            
         );
+        var code = Blockly.JavaScrip.workspaceToCode(workspace);   
     </script>
 </body>
 
