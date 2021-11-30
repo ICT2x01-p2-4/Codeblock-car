@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>ICT210</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}" />
+    <link href="{% static 'css/bootstrap-extended.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/icons.css' %}" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+
+    <!-- loader-->
+    <link href="{% static 'css/pace.min.css' %}" rel="stylesheet" />
+
+    <!-- Bootstrap bundle JS -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!--plugins-->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'plugins/simplebar/js/simplebar.min.js' %}"></script>
+    <script src="{% static 'plugins/metismenu/js/metisMenu.min.js' %}"></script>
+    <script src="{% static 'plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <!--start sidebar -->
+    <div class="container">
+        <aside class="sidebar-wrapper" data-simplebar="true">
+            <div class="sidebar-header d-flex justify-content-center">
+
+                <div>
+                    <h1 class="logo-text">Student</h1>
+                </div>
+
+            </div>
+            <!--navigation-->
+            <ul class="metismenu" id="menu">
+                <li>
+                    <a href="/dashboard">
+                        <div class="parent-icon"><i class="bi bi-activity"></i>
+                        </div>
+                        <div class="menu-title">Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="parent-icon"><i class="bi bi-stopwatch"></i>
+                        </div>
+                        <div class="menu-title">Challenge</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/tutorial">
+                        <div class="parent-icon"><i class="bi bi-calendar-week"></i>
+                        </div>
+                        <div class="menu-title">Tutorial</div>
+                    </a>
+                </li>
+
+            </ul>
+            <!--end navigation-->
+        </aside>
+    </div>
+    <!--end sidebar -->
+    <div class="head">
+        <div class="jumbotron">
+            <h1 class="display-4 text-center">Challenge</h1>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Challenge ID</th>
+                    <th scope="col">Difficulty</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for challenge in challenges %}
+                <tr>
+                    <td>
+                        {{challenge.id}}
+                    </td>
+                    <td>
+                        {{challenge.diff}}
+                    </td>
+                    <td>
+                        
+                        <a href="edit/" class= "btn btn-success">Attempt</a>
+                        <!-- <button class="btn btn-warning" type="button">Edit</button>
+                        <button class="btn btn-danger" type="button">Delete</button> -->
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- <div class="btn-holder">
+            
+            <a class= "btn btn-primary" href="create/" style="color: black; margin-left: 1050px;">Create New Challenge</a>
+        </div> -->
+
+    </div>
+</body>
+
+<script>
+
+</script>
+
+</html>
