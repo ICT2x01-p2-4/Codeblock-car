@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    # 'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'challenge'
@@ -123,7 +123,7 @@ USE_TZ = True
 STATIC_URL = '/templates/'  
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "templates"),
-    '/var/www/templates/',
+    # '/var/www/templates/',
 ]
 
 # Default primary key field type
