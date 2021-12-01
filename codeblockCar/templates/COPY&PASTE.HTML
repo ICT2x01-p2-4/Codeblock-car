@@ -70,3 +70,15 @@
 <script src="{% static 'js/javascript_compressed.js' %}"></script>
 <!-- blockly code translated into JavaScript for code generation -->
 <script src="{% static 'js/en.js' %}"></script> <!-- Language for user meassages -->
+
+    // var demoWorkspace = Blockly.inject('blocklyDiv', { media: "{% static 'blockly/media' %}", toolbox:
+    document.getElementById('toolbox') });
+    // Blockly.Xml.domToWorkspace(document.getElementById('toolbox'), demoWorkspace);
+    var workSpaceCode = document.getElementById('toolbox');
+    
+    function showCode() {
+    // Generate JavaScript code and display it.
+    Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+    var code = Blockly.JavaScript.workspaceToCode(workSpaceCode);
+    alert(code);
+    }
