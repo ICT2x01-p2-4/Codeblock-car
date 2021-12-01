@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ block.super }}{% endblock title %}
+
+{% block content %}
+
+<!--- Insert Body Content here -->
+<div class="head">
+    <div class="jumbotron">
+        <h1 class="display-4 text-center">Challenge</h1>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Challenge ID</th>
+                <th scope="col">Difficulty</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for challenge in challenges %}
+            <tr>
+                <td>
+                    {{challenge.id}}
+                </td>
+                <td>
+                    {{challenge.diff}}
+                </td>
+                <td>
+                    
+                    <a href="edit/" class= "btn btn-success">Attempt</a>
+                    <button class="btn btn-warning" type="button">Edit</button>
+                    <button class="btn btn-danger" type="button">Delete</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="btn-holder">
+        
+        <a class= "btn btn-primary" href="create/" style="color: black; margin-left: 1050px;">Create New Challenge</a>
+    </div>
+
+</div>
+
+{% endblock content %}

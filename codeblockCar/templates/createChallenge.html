@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ block.super }}{% endblock title %}
+
+{% block content %}
+
+<!--- Insert Body Content here -->
+<div class="head">
+    <div class="jumbotron">
+        <h1 class="display-4 text-center">Create Challenge</h1>
+    </div>
+    <p style="text-align: center;">
+        Click on the grid to add an obstacle to the maze
+    </p>
+    <select id="gridSize" class="gridSize" onchange="gridChange(this);" style="margin-left: 1050px;width: 200px;">
+        <option value="3" style="text-align: center;">3 x 3</option>
+        <option value="5" style="text-align: center;">5 x 5</option>
+        <option value="7" style="text-align: center;">7 x 7</option>
+    </select>
+    <div id='gridSpace'></div>
+
+    <div>
+        <a class= "btn btn-primary" href="../" style="color: black; margin-left: 1050px; width: 200px;">Save</a>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block jsfile %}
+{{ block.super }}
+{% endblock jsfile %}
