@@ -61,7 +61,13 @@ python -m pip install -r requirements.txt
 > [Reconfiguring requirements.txt](https://code.visualstudio.com/docs/python/environments)
 
 ## 4. Start the server
-TODO
+```sh
+# Ensure that you cd to the django project folder
+cd codeblockCar
+
+# Start the web server
+python manage.py runserver
+```
 
 # Development Workflow
 
@@ -97,6 +103,17 @@ TODO
 - Test all cases that are relevant to new feature
 - Ensure all test cases passed before commit to `dev`
 
+## Templating
+Refer to [templating guide](https://docs.djangoproject.com/en/3.2/ref/templates/language/) for more information on how to properly create the templates. General design principles and OOP inheritance should apply.
+
+- Parent is always `base.html`
+  - Changes that affects all children should be made to parent
+- Child views
+  - Inherit from base view if same elements are used
+- Pass dynamic values as reference variable in templates
+- Javascript code should be created as a js file and put in the `templates` folder
+  - Best practice is to not expose js code in pure html
+
 # Testing
 
 ## User acceptance Test (UAT)
@@ -108,6 +125,15 @@ TODO
 ------------
 
 # Changelog
+
+## v0.2
+- Updated README
+  - Added details on starting the project
+  - Added workflow for templating
+- Removed WORKFLOW.md again (not committed previously)
+- Updated templates
+  - Refactored html code by adding inheritance and templating
+  - Established base templating structure for future usage
 
 ## v0.1
 - Updated README
