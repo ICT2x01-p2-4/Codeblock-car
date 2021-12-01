@@ -114,6 +114,25 @@ Refer to [templating guide](https://docs.djangoproject.com/en/3.2/ref/templates/
 - Javascript code should be created as a js file and put in the `templates` folder
   - Best practice is to not expose js code in pure html
 
+## Database
+
+### Updating the database
+After there are changes made to the models file, you have to run the following code to update the existing database with the data.
+```sh
+# Update the models
+python manage.py makemigrations
+
+# Apply changes to db
+python manage.py migrate
+```
+
+### Reverting the database
+```sh
+# Revert to the change to previous change
+# Number located in <app_name>/migrations
+python manage.py migrate challenge 0002
+```
+
 # Testing
 
 ## User acceptance Test (UAT)

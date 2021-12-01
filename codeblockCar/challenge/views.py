@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 
 def challenge(request):
-    #Retrieve data from db
+    # Retrieve data from db
     challenges = [
         {
             'id': 1,
