@@ -3,7 +3,6 @@
 <!-- py manage.py runserver -->
 <!-- http://127.0.0.1:8000/codingPage/ -->
 
-
 <html>
 
 <head>
@@ -23,7 +22,7 @@
 <body>
     <h1>Testing coding page, YAY it worked!</h1>
     <p>
-        <button onclick="showCode()">Show JavaScript</button>
+        <button onclick="run()">Show JavaScript</button>
     </p>
     <div id="blocklyDiv" style="height: 500px; width: 800px;">
         <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
@@ -53,6 +52,11 @@
                     this.setHelpUrl("");
                 }
             };
+        Blockly.JavaScript['forward'] = function (block) {
+            // TODO: Assemble JavaScript into code variable.
+            var code = '1';
+            return code;
+        };
 
         Blockly.Blocks['stop'] = {
                 init: function () {
@@ -64,6 +68,11 @@
                     this.setTooltip("");
                     this.setHelpUrl("");
                 }
+            };
+        Blockly.JavaScript['stop'] = function (block) {
+                // TODO: Assemble JavaScript into code variable.
+                var code = '2';
+                return code;
             };
 
         Blockly.Blocks['left'] = {
@@ -77,41 +86,27 @@
                     this.setHelpUrl("");
                 }
             };
-
-        Blockly.Blocks['right'] = {
-                init: function () {
-                    this.appendDummyInput()
-                        .appendField("Turn Right");
-                    this.setPreviousStatement(true, null);
-                    this.setNextStatement(true, null);
-                    this.setColour(300);
-                    this.setTooltip("");
-                    this.setHelpUrl("");
-                }
+        Blockly.JavaScript['left'] = function (block) {
+                // TODO: Assemble JavaScript into code variable.
+                var code = '3';
+                return code;
             };
         
-        Blockly.JavaScript['forward'] = function (block) {
-            // TODO: Assemble JavaScript into code variable.
-            var code = '...;\n';
-            return 1;
+        Blockly.Blocks['right'] = {
+            init: function () {
+                this.appendDummyInput()
+                    .appendField("Turn Right");
+                this.setPreviousStatement(true, null);
+                this.setNextStatement(true, null);
+                this.setColour(300);
+                this.setTooltip("");
+                this.setHelpUrl("");
+            }
         };
-
-        Blockly.JavaScript['stop'] = function (block) {
-            // TODO: Assemble JavaScript into code variable.
-            var code = '...;\n';
-            return 2;
-        };
-
-        Blockly.JavaScript['left'] = function (block) {
-            // TODO: Assemble JavaScript into code variable.
-            var code = '...;\n';
-            return 3;
-        };
-
         Blockly.JavaScript['right'] = function (block) {
             // TODO: Assemble JavaScript into code variable.
-            var code = '...;\n';
-            return 4;
+            var code = '4';
+            return code;
         };
        
         
@@ -150,9 +145,30 @@
                 scrollbars: true,
                 sounds: true,
                 oneBasedIndex: true,
-                
             }
         );   
+    
+          var run = function () {
+                Blockly.JavaScript.addReservedWords('code');
+                var code = Blockly.JavaScript.workspaceToCode(workspace);
+
+                // now what do you do want to do with code...?
+                alert(code)
+                var data = { "data": code }
+                // $.ajax({
+                //     type: 'POST',
+                //     contentType: 'application/json',
+                //     url: '/play',
+                //     dataType: 'json',
+                //     data: JSON.stringify(data),
+                //     success: (data) => {
+                //         console.log('success')
+                //     },
+                //     error: (data) => {
+                //         console.log('failure')
+                //     }
+                // });
+            }
     </script>
 </body>
 
