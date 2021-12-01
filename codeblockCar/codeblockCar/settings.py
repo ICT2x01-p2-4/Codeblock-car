@@ -32,14 +32,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    # 'django.contrib.sessions',
+    'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'challenge'
+    'challenge',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +123,10 @@ STATIC_URL = '/templates/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "templates"),
     # '/var/www/templates/',
+]
+
+FIXTURE_DIRS = [
+    os.path.join(BASE_DIR, "fixtures")
 ]
 
 # Default primary key field type
