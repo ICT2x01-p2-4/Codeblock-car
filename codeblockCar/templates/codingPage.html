@@ -54,7 +54,7 @@
             };
         Blockly.JavaScript['forward'] = function (block) {
             // TODO: Assemble JavaScript into code variable.
-            var code = '1';
+            var code = '1\n';
             return code;
         };
 
@@ -71,7 +71,7 @@
             };
         Blockly.JavaScript['stop'] = function (block) {
                 // TODO: Assemble JavaScript into code variable.
-                var code = '2';
+                var code = '2\n';
                 return code;
             };
 
@@ -88,7 +88,7 @@
             };
         Blockly.JavaScript['left'] = function (block) {
                 // TODO: Assemble JavaScript into code variable.
-                var code = '3';
+                var code = '3\n';
                 return code;
             };
         
@@ -105,12 +105,12 @@
         };
         Blockly.JavaScript['right'] = function (block) {
             // TODO: Assemble JavaScript into code variable.
-            var code = '4';
+            var code = '4\n';
             return code;
         };
        
         
-       // Script for the tool box for blockly
+        // Script for the tool box for blockly
         var workspace = Blockly.inject('blocklyDiv',
             {
                 toolbox: document.getElementById('toolbox'),
@@ -147,28 +147,29 @@
                 oneBasedIndex: true,
             }
         );   
-    
-          var run = function () {
-                Blockly.JavaScript.addReservedWords('code');
-                var code = Blockly.JavaScript.workspaceToCode(workspace);
+        // Script to deal with the instruction made by user
+        var run = function () {
+            Blockly.JavaScript.addReservedWords('code');
+            var code = Blockly.JavaScript.workspaceToCode(workspace);
 
-                // now what do you do want to do with code...?
-                alert(code)
-                var data = { "data": code }
-                // $.ajax({
-                //     type: 'POST',
-                //     contentType: 'application/json',
-                //     url: '/play',
-                //     dataType: 'json',
-                //     data: JSON.stringify(data),
-                //     success: (data) => {
-                //         console.log('success')
-                //     },
-                //     error: (data) => {
-                //         console.log('failure')
-                //     }
-                // });
-            }
+            // now what do you do want to do with code...?
+            alert(code);
+            console.log(code);
+            // var data = { "data": code }
+            // $.ajax({
+            //     type: 'POST',
+            //     contentType: 'application/json',
+            //     url: '/play',
+            //     dataType: 'json',
+            //     data: JSON.stringify(data),
+            //     success: (data) => {
+            //         console.log('success')
+            //     },
+            //     error: (data) => {
+            //         console.log('failure')
+            //     }
+            // });
+        };
     </script>
 </body>
 
