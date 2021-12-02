@@ -145,6 +145,19 @@ TODO
 
 # Changelog
 
+## v0.3
+- Updated models
+  - Moved challenge command table over to codingpage app
+  - Moved validator over to codingpage app
+- Removed custom.js (duplicate code)
+- Updated codingPage.html
+  - Added templating
+  - Removed js within HTML and moved code to js file
+- Created coding_page.js
+  - Utilised OOP to reduce the lines of code
+- Updated base.html
+  - Added more templates for header scripts
+
 ## v0.2
 - Updated README
   - Added details on starting the project
