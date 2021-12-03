@@ -1943,3 +1943,7 @@ a {
   	justify-content: center
 
 }
+.form-select{
+	width: 80%;
+	height: 70%;
+}

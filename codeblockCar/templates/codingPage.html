@@ -6,15 +6,18 @@ http://127.0.0.1:8000/codingPage/ -->
 
 {% block content %}
 {% load static %}
+
 <head>
     <title>Coding Page - (Blockly)</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/blockly/blockly.min.js"></script>        <!-- unpkg link using js script to the blockly library -->
-    <script src="{% static 'blockly/blockly_compressed.js' %}"></script>    <!-- core blockly script -->
-    <script src="{% static 'blockly/blocks_compressed.js' %}"></script>     <!-- core blocks set -->
-    <script src="{% static 'blockly/javascript_compressed.js' %}"></script> <!-- blockly code translated into JavaScript for code generation -->
-    <script src="{% static 'blockly/msg/js/en.js' %}"></script>             <!-- Language for user meassages -->
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <!-- unpkg link using js script to the blockly library -->
+    <script src="{% static 'blockly/blockly_compressed.js' %}"></script> <!-- core blockly script -->
+    <script src="{% static 'blockly/blocks_compressed.js' %}"></script> <!-- core blocks set -->
+    <script src="{% static 'blockly/javascript_compressed.js' %}"></script>
+    <!-- blockly code translated into JavaScript for code generation -->
+    <script src="{% static 'blockly/msg/js/en.js' %}"></script> <!-- Language for user meassages -->
     <!-- <script src="{% static 'blockly/generators/javascript/custom.js' %}"></script> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -23,45 +26,43 @@ http://127.0.0.1:8000/codingPage/ -->
 <!--- Insert Body Content here -->
 <div class="head">
     <div class="jumbotron">
-        <h1 class="display-4 text-center"></h1>
+        <h1 class="display-4 text-center">Coding Page</h1>
     </div>
-    <table class="table">
-        <div>
-            1 = Forward
+    <div class="container">
+        <div class="row pb-5">
+            <div class="col">
+                <div id="blocklyDiv" style="height: 500px; width: 500px;">
+                    <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+                        <!-- <block type="lists_create_with"></block> -->
+                        <block type="controls_repeat_ext">
+                            <value name="TIMES">
+                                <shadow type="math_number">
+                                    <field name="NUM">5</field>
+                                </shadow>
+                            </value>
+                        </block>
+                        <block type="forward"></block>
+                        <block type="stop"></block>
+                        <block type="left"></block>
+                        <block type="right"></block>
+                    </xml>
+                </div>
+            </div>
+            <div class="col">
+                <div id='gridSpace' style="height:480px; min-width:480px;">
+                </div>
+            </div>
         </div>
-        <div>
-            2 = Left
-        </div>
-        <div>
-            3 = Right
-        </div>
-        <div>
-            4 = Stop
-        </div>
-        <div id="blocklyDiv" style="height: 500px; width: 800px;">
-            <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-                <!-- <block type="lists_create_with"></block> -->
-                <block type="controls_repeat_ext">
-                    <value name="TIMES">
-                        <shadow type="math_number">
-                            <field name="NUM">5</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="forward"></block>
-                <block type="stop"></block>
-                <block type="left"></block>
-                <block type="right"></block>
-            </xml>
-        </div>
-    </table>
-    <div>
-        <p>
+        <div class="row pb-5">
             <button class="btn btn-info btn-lg" onclick="run()">Run Code</button>
+            <p>&nbsp;</p>
             <!-- <button TYPE="button" ONCLICK="confirmFunction()">Send Commands</button> -->
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Execute Commands</button>
-        </p>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Execute
+                Commands</button>
+        </div>
     </div>
+
+    
     <script>
         Blockly.Blocks['forward'] = {
             init: function () {
@@ -178,21 +179,27 @@ http://127.0.0.1:8000/codingPage/ -->
             alert(code);
             console.log(code);
         };
-    
+
         function confirmFunction() {
             confirm("Are you sure you want to send commands?")
         };
+
+        var a = "{{challenge.maze}}";
+        var gridLen = "{{gridSize}}";
+        a = a.replaceAll("&#x27;", "'")
+        var a = a.match(/\d/g);
+        a = a.join("");
     </script>
     <!-- Modal view -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-    
+
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Confirm?</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    
+
                 </div>
                 <div class="modal-body">
                     <p>Would you like to Execute the command.</p>
@@ -202,7 +209,7 @@ http://127.0.0.1:8000/codingPage/ -->
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
-    
+
         </div>
     </div>
 

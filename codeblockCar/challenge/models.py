@@ -1,6 +1,4 @@
 from django.db import models
-
-from .validators import validate_action_code
 import pymongo
 
 client = pymongo.MongoClient("mongodb+srv://ivan:codeBlockCar@codeblockcar.75aak.mongodb.net/CodeBlockCar?retryWrites=true&w=majority")
@@ -19,7 +17,6 @@ class Challenge(models.Model):
     
 class Command(models.Model):
     action = models.CharField(max_length=30)
-    code = models.IntegerField(validators=[validate_action_code])
     
     def __str__(self) -> str:
         return '({:d}) {}'.format(self.code, self.action)
