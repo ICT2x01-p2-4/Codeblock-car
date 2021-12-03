@@ -1,4 +1,5 @@
 from django.db import models
+
 from .validators import validate_action_code
 import pymongo
 
