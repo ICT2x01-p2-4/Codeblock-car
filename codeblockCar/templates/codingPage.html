@@ -1,3 +1,5 @@
+<!-- py manage.py runserver
+http://127.0.0.1:8000/codingPage/ -->
 {% extends 'base.html' %}
 
 {% block title %}{{ block.super }}{% endblock title %}
@@ -21,6 +23,18 @@
         <h1 class="display-4 text-center">Coding</h1>
     </div>
     <table class="table">
+        <div>
+            1 = Forward
+        </div>
+        <div>
+            2 = Left
+        </div>
+        <div>
+            3 = Right
+        </div>
+        <div>
+            4 = Stop
+        </div>
         <div id="blocklyDiv" style="height: 500px; width: 800px;">
             <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
                 <!-- <block type="lists_create_with"></block> -->
@@ -41,6 +55,7 @@
     <div>
         <p>
             <button onclick="run()">Run Code</button>
+            <button TYPE="button" ONCLICK="confirmFunction()">Send Commands</button>
         </p>
     </div>
     <script>
@@ -158,6 +173,10 @@
             // now what do you do want to do with code...?
             alert(code);
             console.log(code);
+        };
+    
+        function confirmFunction() {
+            confirm("Are you sure you want to send commands?")
         };
     </script>
 
