@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ block.super }}{% endblock title %}
+
+{% block content %}
+
+
+<!--- Insert Body Content here -->
+<div class="head">
+    <div class="jumbotron">
+        <h1 class="display-4 text-center">Challenge {{challenge.mazeID}}</h1>
+    </div>
+</div>
+<div class="head">
+    <div class="card m-4">
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col col-lg-6 text-center">
+                        <select id="gridSize" class="gridSize form-select form-select-md mb-4 text-center"
+                            onchange="gridChange(this);">
+                            <!--- To be changed to the value stored in the database-->
+                            <option value="{{gridSize}}">{{gridSize}} x {{gridSize}}</option>
+                        </select>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+
+            <div id='gridSpace'></div>
+            
+            <div>
+
+                <div class="float-right mt-2">
+                    <a href="../../codingPage" class="btn btn-primary btn-lg px-5">Attempt</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript"> 
+        var a = "{{challenge.maze}}";
+        a = a.replaceAll("&#x27;", "'")
+        var a = a.match(/\d/g);
+        a = a.join("");
+        console.log(a)
+        console.log(typeof(a))
+     </script>
+    {% endblock content %}
+
+    {% block jsfile %}
+    {{ block.super }}
+    {% endblock jsfile %}

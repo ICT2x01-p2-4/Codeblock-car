@@ -21,14 +21,14 @@
         {% for challenge in challenges %}
         <tr>
             <td>
-                {{challenge.id}}
+                {{challenge.mazeID}}
             </td>
             <td>
-                {{challenge.diff}}
+                {{challenge.difficulty}}
             </td>
             <td>
                 
-                <a href="edit/" class= "btn btn-success">Attempt</a>
+                <a href="view/?challengeID={{challenge.mazeID}}" class= "btn btn-success">View</a>
                 <!-- <button class="btn btn-warning" type="button">Edit</button>
                 <button class="btn btn-danger" type="button">Delete</button> -->
             </td>
