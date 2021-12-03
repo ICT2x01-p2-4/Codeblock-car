@@ -19,5 +19,6 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('challenge/', include('challenge.url')),
+    path('dashboard/', include('dashboard.url'))
     # path('', )
 ]
