@@ -14,8 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import render
 from django.urls import path, include
 from django.views.generic import RedirectView
+from . import views
 
 urlpatterns = [
 
@@ -23,4 +25,5 @@ urlpatterns = [
     path('codingPage/', include('codingPage.urls')),
     path('challenge/',include('challenge.url')),
     path('', RedirectView.as_view(url='index', permanent=True)),
+    path('index/',views.index)
 ]
