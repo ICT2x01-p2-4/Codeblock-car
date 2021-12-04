@@ -12,18 +12,39 @@
     <p style="text-align: center;">
         Click on the grid to add an obstacle to the maze
     </p>
-    <select id="gridSize" class="gridSize" onchange="gridChange(this);" style="margin-left: 1050px; width: 200px;">
-        <option value="3" style="text-align: center;">3 x 3</option>
-        <option value="5" style="text-align: center;">5 x 5</option>
-        <option value="7" style="text-align: center;">7 x 7</option>
-    </select>
-    <div id='gridSpace'></div>
+</div>
+<div class="head">
+    <div class="card m-4">
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-lg-6 text-center">
+                        <select id="gridSize" class="gridSize form-select form-select-md mb-4 text-center"
+                            onchange="gridChange(this);">
+                            <option value="3">3 x 3</option>
+                            <option value="5">5 x 5</option>
+                            <option value="7">7 x 7</option>
+                        </select>
+                    </div>
+                    <div class="col col-lg-6 text-center">
+                        <select id="difficulty" class="difficuly form-select form-select-md mb-4 text-center"
+                            onchange="difficultyChange(this);">
+                            <option value="Easy">Easy</option>
+                            <option value="Normal">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-    <div>
-        <a class= "btn btn-primary" href="../" style="color: black; margin-left: 1050px; width: 200px;">Save</a>
+            <div id='gridSpace'></div>
+            
+            <div class="float-right mt-2">
+                <button id="saveGrid" type="submit" class="btn btn-primary btn-lg px-5" href="../">Save</button>
+            </div>
+        </div>
     </div>
 </div>
-
 {% endblock content %}
 
 {% block jsfile %}
