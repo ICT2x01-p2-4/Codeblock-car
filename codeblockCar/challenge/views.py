@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import Http404, HttpResponseForbidden
 from django.views.decorators.csrf import requires_csrf_token, ensure_csrf_cookie
 from .models import Challenge
-# Create your views here.
 
 
 def challenge(request):
@@ -13,8 +12,19 @@ def challenge(request):
         payload = {
             'title': 'Select Challenge',
             'challenges': challenges,
+            'jsfile': 'challenge',
         }
         return render(request, 'challenge.html', payload)
+
+def delete(request):
+    if request.is_ajax and request.method == "POST":
+        print(request.POST['challenge_id'])
+        # Delete the object
+        Challenge.objects.filter(id=request.POST['challenge_id']).delete()
+        
+        return render(request, 'challenge.html')
+    else:
+        return render(HttpResponseForbidden)
 
 @requires_csrf_token
 @ensure_csrf_cookie
