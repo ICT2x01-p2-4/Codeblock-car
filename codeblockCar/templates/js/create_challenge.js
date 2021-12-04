@@ -26,7 +26,6 @@ var lastClicked;
 createGrid();
 let gridSize = document.querySelector('.gridSize');
 
-
 gridSize.addEventListener('change', (event) => {
     if ($(".grid")) {
         $(".grid").remove();
@@ -89,89 +88,51 @@ function clickableGrid(rows, cols, callback) {
 }
 
 $('#saveGrid').on('click', function(e) {
-    console.log("Hit Save");
-    e.preventDefault();
-    var gridArray = '';
-    for (var rows = 0; rows < $('#gridSize').val(); ++rows ){
-        for (var cols = 0; cols < $('#gridSize').val(); ++cols){
-            var element = cols + 1 + ($('#gridSize').val()*rows)
-            // console.log(element)
-            console.log(document.getElementById(element.toString()))
-            if (document.getElementById(element.toString()).className == "clicked"){
-                gridArray += '1,';
-            }
-            else{
-                gridArray += '0,';
-            }
-        }
+    if ($('#challenge-name').val() == '') {
+        alert('Please fill in Challenge Name.');
     }
-    // Remove extra comma at the end
-    gridArray = gridArray.substring(0, gridArray.length - 1);
-    // Log this data to the console
-    console.log(gridArray);
-    console.log($('#difficulty').val());
-
-    $.ajax({
-        type: "POST",
-        url: "",
-        headers: {'X-CSRFToken': csrftoken},
-        mode: 'same-origin',
-        data: {
-            "map": gridArray,
-            "difficulty": $('#difficulty').val()
-        },
-        error: function (xhr, status, err) {
-            alert("Error");
-        },
-        success: function (result) {
-            alert("Success");
-            window.location.href='/challenge';
+    else {
+        e.preventDefault();
+        var gridArray = '';
+        for (var rows = 0; rows < $('#gridSize').val(); ++rows ){
+            for (var cols = 0; cols < $('#gridSize').val(); ++cols){
+                var element = cols + 1 + ($('#gridSize').val()*rows)
+                // console.log(element)
+                console.log(document.getElementById(element.toString()))
+                if (document.getElementById(element.toString()).className == "clicked"){
+                    gridArray += '1,';
+                }
+                else{
+                    gridArray += '0,';
+                }
+            }
         }
-    });
+        // Remove extra comma at the end
+        gridArray = gridArray.substring(0, gridArray.length - 1);
+        // Log this data to the console
+        console.log($('#challenge-name').val());
+        console.log(gridArray);
+        console.log($('#difficulty').val());
+
+        $.ajax({
+            type: "POST",
+            url: "",
+            headers: {'X-CSRFToken': csrftoken},
+            mode: 'same-origin',
+            data: {
+                "name": $('#challenge-name').val(),
+                "map": gridArray,
+                "difficulty": $('#difficulty').val()
+            },
+            error: function () {
+                alert("Error");
+            },
+            success: function () {
+                alert("Success");
+                window.location.href='/challenge';
+            }
+        });
+    }
 })
-
-// $("button").click(function(e){
-//     console.log("Hit Save")
-    
-//     e.preventDefault();
-//     var gridArray = []
-//     var colsArray = []
-//     for (var rows = 0; rows < $('#gridSize').val(); ++rows ){
-//         for (var cols = 0; cols < $('#gridSize').val(); ++cols){
-            
-//             var element = cols + 1 + ($('#gridSize').val()*rows)
-//             // console.log(element)
-//             console.log(document.getElementById(element.toString()))
-//             if (document.getElementById(element.toString()).className == "clicked"){
-//                 colsArray[cols] = 1
-//             }
-//             else{
-//                 colsArray[cols] = 0
-//             }
-            
-//         }
-//         gridArray[rows] = colsArray
-//         colsArray = []
-//     }
-//     console.log(gridArray)
-//     console.log($('#difficulty').val())
-//      $.ajax({
-//         type: "POST",
-//         url: "",
-//         data: {
-//             "maze": gridArray,
-//             "difficulty": $('#difficulty').val()
-//         },
-//         error: function (xhr, status, err) {
-//             // var err = eval("(" + xhr.responseText + ")");
-//            alert("Error")
-//         },
-//         success: function (result) {
-//             alert("Success")
-//             window.location.href='/challenge'   
-//         }
-//     });
-
-// })
     
    

@@ -8,7 +8,7 @@ from .models import Challenge
 def challenge(request):
     if request.method == "GET":
         # Retrieve data from db
-        challenges = Challenge.objects.values_list('id', 'difficulty')
+        challenges = Challenge.objects.values_list('id', 'name', 'difficulty')
         
         payload = {
             'title': 'Select Challenge',
@@ -27,18 +27,16 @@ def create(request):
         return render(request,'createChallenge.html', payload)
     
     elif request.is_ajax and request.method == "POST":
-        post_map = request.POST.getlist("map")[0]
-        post_diff = request.POST.getlist("difficulty")[0]
         
-        print(post_map, post_diff)
         # Create the challenge object
         Challenge.objects.create(
-            map = post_map,
-            difficulty = post_diff
+            name = request.POST['name'],
+            map = request.POST['map'],
+            difficulty = request.POST['difficulty']
         )
         return render(request,'challenge.html')
 
-def edit(request):
+def edit(request, challenge_id):
     payload = {
         'title': 'Edit Challenge',
         'jsfile': 'edit_challenge',
