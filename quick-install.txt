@@ -1,0 +1,16 @@
+*** ENSURE YOU ARE IN THE PROJECT ROOT DIRECTORY BEFORE PROCEEDING ***
+
+=== This quick install guide is for Windows ===
+
+=== Run the commands in sequence in order to start the server ===
+
+pip install virtualenv
+python -m venv cb-car
+cb-car\Scripts\activate.bat
+python -m pip install -r requirements.txt
+cd codeblockCar
+python manage.py makemigrations
+python manage.py migrate
+python manage.py loaddata commands.json
+python manage.py loaddata challenges.json
+python manage.py runserver

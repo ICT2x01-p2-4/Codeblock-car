@@ -1,5 +1,6 @@
+from django.core.exceptions import ValidationError
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import Http404
 from django.views.decorators.csrf import requires_csrf_token, ensure_csrf_cookie
 from .models import Command
 
@@ -12,7 +13,6 @@ def index(request):
             'title': 'Coding Page',
             'jsfile': 'coding_page',
             'script_list': (
-                # 'https://unpkg.com/blockly/blockly.min.js',
                 'blockly/blockly_compressed.js',
                 'blockly/blocks_compressed.js',
                 'blockly/python_compressed.js',
@@ -20,6 +20,7 @@ def index(request):
             ),
             'blocks': Command.objects.values_list('action', 'code'),
         }
+        
         return render(request,"codingPage.html", payload)
     
     elif request.method == 'POST':
