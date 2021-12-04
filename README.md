@@ -1,10 +1,12 @@
 # Codeblock Car
 
 ## About
-Insert description here
+Codeblock Car is a new and interactive way for young students to learn basic logical thinking outside of the classroom. By providing the young students with a robotic car, a set of challenges, and block-based programming solutions to resolve the problems, these students are expected to learn basic logical thinking.
 
 ------------
 # Installation Guide
+
+You can either find the full list of commands in the `quick-install.txt` file or follow the commands below.
 
 ## 1. Install Python
 Ensure that [python](https://www.python.org/downloads/) is installed.
@@ -44,7 +46,7 @@ python3 -m venv cb-car
 > Windows
 ```ps1
 # Activate the virtual environment
-codeblock-car\Scripts\activate.bat
+cb-car\Scripts\activate.bat
 
 # Install the requirements
 python -m pip install -r requirements.txt
@@ -53,7 +55,7 @@ python -m pip install -r requirements.txt
 > Linux/Mac OS
 ```sh
 # Activate the virtual environment
-source codeblock-car/bin/activate
+source cb-car/bin/activate
 
 # Install the requirements
 python -m pip install -r requirements.txt
@@ -69,7 +71,28 @@ cd codeblockCar
 python manage.py runserver
 ```
 
+## 5. Migrate the Database
+```sh
+# Update the models
+python manage.py makemigrations
+
+# Apply changes to db
+python manage.py migrate
+```
+
+## 6. Load the databases
+```sh
+python manage.py loaddata commands.json
+python manage.py loaddata challenges.json
+```
+
 # Development Workflow
+
+## Updating Dependency Requirements
+Run the following code if you installed any additional dependencies
+```sh
+pip freeze > requirements.txt
+```
 
 ## Rules
 1. Always commit to `dev` before commit to `master`
@@ -118,6 +141,7 @@ Refer to [templating guide](https://docs.djangoproject.com/en/3.2/ref/templates/
 
 ### Updating the database
 After there are changes made to the models file, you have to run the following code to update the existing database with the data.
+
 ```sh
 # Update the models
 python manage.py makemigrations
@@ -133,6 +157,23 @@ python manage.py migrate
 python manage.py migrate challenge 0002
 ```
 
+### Fixtures
+Create a fixture by specifying the database to dump
+
+```ps1
+./manage.py dumpdata > fixtures\\databasedump.json                # full database
+./manage.py dumpdata myapp > fixtures\\databasedump.json          # only 1 app
+./manage.py dumpdata myapp.mymodel > fixtures\\databasedump.json  # only 1 model (table)
+```
+
+Load data by reloading the fixtures
+
+```ps1
+./manage.py loaddata databasedump.json
+```
+
+
+
 # Testing
 
 ## User acceptance Test (UAT)
@@ -145,38 +186,70 @@ TODO
 
 # Changelog
 
-## v0.2
+## v0.3.1
+- Added Fixtures
+  - Use `fixtures` directory to dump default database configurations
+  - Tested `loaddata dump.json` working successfully
 - Updated README
+  - Added description for about section
+  - Updated install guide with database installation notes
+  - Updated Workflow section on working with Databases
+  - Updated Workflow section on updating install requirements
+- Added `quick-install.txt` guide for windows installation
+- Updated `codingPage.html`
+  - Added HTML for modals
+  - Removed previous run button
+- Updated `coding_page.js`
+  - Added functions to interact with generated Modals
+  - Removed previous run function
+- Updated `settings.py` in `codeblockCar`
+  - Change route naming to **"coding"** instead of **"codingPage"**
+
+## v0.3
+- Updated `models`
+  - Moved challenge command table over to codingpage app
+  - Moved validator over to codingpage app
+- Removed `custom.js` (duplicate code)
+- Updated `codingPage.html`
+  - Added templating
+  - Removed js within HTML and moved code to js file
+- Created `coding_page.js`
+  - Utilised OOP to reduce the lines of code
+- Updated `base.html`
+  - Added more templates for header scripts
+
+## v0.2
+- Updated `README.md`
   - Added details on starting the project
   - Added workflow for templating
-- Removed WORKFLOW.md again (not committed previously)
-- Updated templates
+- Removed `WORKFLOW.md` again (not committed previously)
+- Updated `templates`
   - Refactored html code by adding inheritance and templating
   - Established base templating structure for future usage
 
 ## v0.1
-- Updated README
+- Updated `README.md`
   - Changed virtualenv naming to avoid conflicts with django project folder
-- Added requirements.txt
-- Added codeblockCar (django project)
+- Added `requirements.txt`
+- Added `codeblockCar` (django project)
   - Configured central folder for maintaining all templates
   - Added student app (comprises of student features)
   - Added connections app (comprises of car connection features)
 
 ## v0.0.3
-- Updated README
+- Updated `README.md`
   - Added install guide (Not configured yet)
-- Added config_guide
+- Added `config_guide.md`
   - Gives an overview of working with Django
-- Removed WORKFLOW.md (Already included in README)
+- Removed `WORKFLOW.md` (Already included in README)
 
 ## v0.0.2
 - Added license
-- Updated README
+- Updated `README.md`
 	- Added workflow information
 	- Added headers to be filled in
-- Added .gitignore for vscode IDE
+- Added `.gitignore` for vscode IDE
 
 ## v0.0.1
 - Initial creation of master branch
-- Added readme
+- Added `README.md`

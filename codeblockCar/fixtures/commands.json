@@ -1,0 +1,34 @@
+[
+    {
+        "model": "codingPage.command",
+        "pk": 1,
+        "fields": {
+            "action": "Move Forward",
+            "code": 1
+        }
+    },
+    {
+        "model": "codingPage.command",
+        "pk": 2,
+        "fields": {
+            "action": "Move Left",
+            "code": 2
+        }
+    },
+    {
+        "model": "codingPage.command",
+        "pk": 3,
+        "fields": {
+            "action": "Move Right",
+            "code": 3
+        }
+    },
+    {
+        "model": "codingPage.command",
+        "pk": 4,
+        "fields": {
+            "action": "Stop",
+            "code": 4
+        }
+    }
+]

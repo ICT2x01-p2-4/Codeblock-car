@@ -1,5 +1,4 @@
 from django.db import models
-from .validators import validate_action_code
 
 class Challenge(models.Model):
     name = models.CharField(max_length=150)
@@ -10,11 +9,4 @@ class Challenge(models.Model):
     
     def __str__(self) -> str:
         return self.name
-    
-class Command(models.Model):
-    action = models.CharField(max_length=30)
-    code = models.IntegerField(validators=[validate_action_code])
-    
-    def __str__(self) -> str:
-        return '({:d}) {}'.format(self.code, self.action)
     
