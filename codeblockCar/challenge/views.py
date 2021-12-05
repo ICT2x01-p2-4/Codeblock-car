@@ -42,13 +42,24 @@ def create(request):
         Challenge.objects.create(
             name = request.POST['name'],
             map = request.POST['map'],
-            difficulty = request.POST['difficulty']
+            size = request.POST['size'],
+            difficulty = request.POST['difficulty'],
         )
         return render(request,'challenge.html')
 
 def edit(request, challenge_id):
-    payload = {
-        'title': 'Edit Challenge',
-        'jsfile': 'edit_challenge',
-    }
-    return render(request, 'editChallenge.html', payload)
+    if request.method == "GET":
+        # Load the challenge object to be edited
+        challenge = Challenge.objects.get(id=challenge_id)
+        
+        payload = {
+            'title': 'Edit Challenge',
+            'jsfile': 'edit_challenge',
+            'challenge': challenge,
+        }
+        return render(request, 'editChallenge.html', payload)
+    
+    elif request.is_ajax and request.method == "POST":
+        # Update the challenge object
+        Challenge.objects.filter(id=request.POST['id']).update(map = request.POST['map'])
+        return render(request, 'challenge.html')

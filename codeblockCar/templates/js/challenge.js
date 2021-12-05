@@ -22,6 +22,12 @@ function getCookie(name) {
 // Get the csrf token for POST request
 const csrftoken = getCookie('csrftoken');
 
+/**
+ * Function to trigger custom alert using Modals
+ *
+ * @param {*} title
+ * @param {*} msg
+ */
 function updateAlert(title, msg) {
     var modal = $('#alert-popup');
     console.log(modal)
@@ -33,12 +39,6 @@ function updateAlert(title, msg) {
     // Show the modal
     modal.modal('show');
 }
-
-// $(document).ready(function () {
-//     updateAlert("1","1");
-//     $('#alert-popup').modal('hide');
-//     updateAlert("2","2");
-// });
 
 var id = '';
 
@@ -76,7 +76,6 @@ $('#delete-challenge').on('click', function(e) {
                 updateAlert("Error", "Error");
             },
             success: function () {
-                // alert("Success!");
                 updateAlert("Success!", "The challenge is successfully deleted.");
                 setTimeout(function() {
                     window.location.href='/challenge';

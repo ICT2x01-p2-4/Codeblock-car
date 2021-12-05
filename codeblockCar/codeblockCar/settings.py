@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'challenge',
     'codingPage',
+    'student',
 ]
 
 MIDDLEWARE = [

@@ -22,6 +22,24 @@
 // Get the csrf token for POST request
 const csrftoken = getCookie('csrftoken');
 
+/**
+ * Function to trigger custom alert using Modals
+ *
+ * @param {*} title
+ * @param {*} msg
+ */
+ function updateAlert(title, msg) {
+    var modal = $('#alert-popup');
+    console.log(modal)
+
+    // Set the contents of the modal
+    modal.find('.modal-title').text(title);
+    modal.find('.modal-body p').text(msg);
+
+    // Show the modal
+    modal.modal('show');
+}
+
 var lastClicked;
 createGrid();
 let gridSize = document.querySelector('.gridSize');
@@ -89,7 +107,7 @@ function clickableGrid(rows, cols, callback) {
 
 $('#saveGrid').on('click', function(e) {
     if ($('#challenge-name').val() == '') {
-        alert('Please fill in Challenge Name.');
+        updateAlert('Error!', 'Please fill in Challenge Name.');
     }
     else {
         e.preventDefault();
@@ -112,6 +130,7 @@ $('#saveGrid').on('click', function(e) {
         // Log this data to the console
         console.log($('#challenge-name').val());
         console.log(gridArray);
+        console.log($('#gridSize').val());
         console.log($('#difficulty').val());
 
         $.ajax({
@@ -122,14 +141,18 @@ $('#saveGrid').on('click', function(e) {
             data: {
                 "name": $('#challenge-name').val(),
                 "map": gridArray,
+                "size": $('#gridSize').val(),
                 "difficulty": $('#difficulty').val()
             },
             error: function () {
-                alert("Error");
+                // Show error message when unexpected errors occur
+                updateAlert("Error", "Error");
             },
             success: function () {
-                alert("Success");
-                window.location.href='/challenge';
+                updateAlert("Success!", "The challenge is successfully created.");
+                setTimeout(function() {
+                    window.location.href='/challenge';
+                }, 1600);
             }
         });
     }

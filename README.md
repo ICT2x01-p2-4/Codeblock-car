@@ -161,15 +161,18 @@ python manage.py migrate challenge 0002
 Sometimes when some configurations go wrong and you want to delete the data stored in the table. You can do so by running the following command
 ```py
 python manage.py shell
->> from challenge.models import Challenge
->> Challenge.objects.all().delete()
+
+from challenge.models import Challenge
+Challenge.objects.all().delete()
 ```
 
 Remember to reset the sequencing for the app so that the `id` starts from 1
 > Must install sqlite3 first before running this command
-```sh
+```sql
 python manage.py dbshell
-sqlite> UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='challenge_challenge';
+
+UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='challenge_challenge';
+.exit
 ```
 
 ### Fixtures
@@ -178,9 +181,9 @@ Fixtures are useful for loading data into the database before running the server
 Create a fixture by specifying the database to dump
 
 ```ps1
-./manage.py dumpdata > fixtures\\databasedump.json                # full database
-./manage.py dumpdata myapp > fixtures\\databasedump.json          # only 1 app
-./manage.py dumpdata myapp.mymodel > fixtures\\databasedump.json  # only 1 model (table)
+python manage.py dumpdata > fixtures\databasedump.json                # full database
+./manage.py dumpdata myapp > fixtures\databasedump.json          # only 1 app
+./manage.py dumpdata myapp.mymodel > fixtures\databasedump.json  # only 1 model (table)
 ```
 
 Load data by reloading the fixtures
@@ -188,8 +191,6 @@ Load data by reloading the fixtures
 ```ps1
 ./manage.py loaddata databasedump.json
 ```
-
-
 
 # Testing
 
