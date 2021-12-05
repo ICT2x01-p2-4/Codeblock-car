@@ -21,6 +21,6 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('coding/', include('codingPage.urls')),
-    path('challenge/',include('challenge.url')),
-    path('', RedirectView.as_view(url='index', permanent=True)),
+    path('challenge/',include('challenge.urls')),
+    path('', include('student.urls')),
 ]

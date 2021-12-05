@@ -1936,3 +1936,10 @@ a {
     background-color:grey;
     font-weight:bold; color:black;
 }
+
+.homepageTitle{
+	height: 10em;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center
+}
