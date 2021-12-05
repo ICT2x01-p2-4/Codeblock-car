@@ -62,16 +62,7 @@ python -m pip install -r requirements.txt
 ```
 > [Reconfiguring requirements.txt](https://code.visualstudio.com/docs/python/environments)
 
-## 4. Start the server
-```sh
-# Ensure that you cd to the django project folder
-cd codeblockCar
-
-# Start the web server
-python manage.py runserver
-```
-
-## 5. Migrate the Database
+## 4. Migrate the Database
 ```sh
 # Update the models
 python manage.py makemigrations
@@ -80,11 +71,21 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-## 6. Load the databases
+## 5. Load the databases
 ```sh
 python manage.py loaddata commands.json
 python manage.py loaddata challenges.json
 ```
+
+## 6. Start the server
+```sh
+# Ensure that you cd to the django project folder
+cd codeblockCar
+
+# Start the web server
+python manage.py runserver
+```
+
 
 # Development Workflow
 
@@ -182,14 +183,14 @@ Create a fixture by specifying the database to dump
 
 ```ps1
 python manage.py dumpdata > fixtures\databasedump.json                # full database
-./manage.py dumpdata myapp > fixtures\databasedump.json          # only 1 app
-./manage.py dumpdata myapp.mymodel > fixtures\databasedump.json  # only 1 model (table)
+python manage.py dumpdata myapp > fixtures\databasedump.json          # only 1 app
+python manage.py dumpdata myapp.mymodel > fixtures\databasedump.json  # only 1 model (table)
 ```
 
 Load data by reloading the fixtures
 
 ```ps1
-./manage.py loaddata databasedump.json
+python manage.py loaddata databasedump.json
 ```
 
 # Testing
@@ -203,6 +204,11 @@ TODO
 ------------
 
 # Changelog
+
+## v0.4.1
+- Added secret key management
+- Updated `requirements.txt`
+- Fixed link for `codingPage`
 
 ## v0.4
 - Refactored Models for challenges

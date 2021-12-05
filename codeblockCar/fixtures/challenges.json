@@ -3,6 +3,18 @@
         "model": "challenge.challenge",
         "pk": 1,
         "fields": {
+            "name": "Tutorial",
+            "map": "0,0,0,0,1,0,0,0,0",
+            "size": 3,
+            "difficulty": "Easy",
+            "created": "2021-12-05T00:11:03.921Z",
+            "updated": "2021-12-05T00:11:03.921Z"
+        }
+    },
+    {
+        "model": "challenge.challenge",
+        "pk": 2,
+        "fields": {
             "name": "Junction",
             "map": "0,0,0,1,1,0,1,1,0",
             "size": 3,
@@ -13,7 +25,7 @@
     },
     {
         "model": "challenge.challenge",
-        "pk": 2,
+        "pk": 3,
         "fields": {
             "name": "Snake",
             "map": "0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0",
@@ -25,7 +37,7 @@
     },
     {
         "model": "challenge.challenge",
-        "pk": 3,
+        "pk": 4,
         "fields": {
             "name": "Crossroads",
             "map": "0,0,0,1,1,0,0,1,1,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0,0,0,1,0,0,0",
