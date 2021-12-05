@@ -11,13 +11,13 @@ def index(request):
         
         payload={
             'title': 'Coding Page',
-            'jsfile': 'coding_page',
             'script_list': (
                 'blockly/blockly_compressed.js',
                 'blockly/blocks_compressed.js',
                 'blockly/python_compressed.js',
                 'blockly/msg/js/en.js',
             ),
+            'jsfile': 'coding_page',
             'blocks': Command.objects.values_list('action', 'code'),
         }
         
