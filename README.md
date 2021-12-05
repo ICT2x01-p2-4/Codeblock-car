@@ -204,6 +204,19 @@ TODO
 
 # Changelog
 
+## v0.4
+- Refactored Models for challenges
+  - Removed MongoDB
+  - Updated models
+    - Removed _description_ field
+    - Added _difficulty_ field
+    - Added _size_ field
+- Updated `challenge` app
+  - CRUD for challenges done
+  - Fixed broken update and delete functions
+  - Refactored URLs in static template to use dynamic pointers to path names
+  - Added fixtures for `challenge` model
+
 ## v0.3.1
 - Added Fixtures
   - Use `fixtures` directory to dump default database configurations
