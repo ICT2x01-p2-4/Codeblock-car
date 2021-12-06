@@ -7,19 +7,46 @@
 <!--- Insert Body Content here -->
 <div class="head">
     <div class="jumbotron">
-        <h1 class="display-4 text-center">Edit Challenge</h1>
-    </div>
-    <select id="gridSize" class="gridSize" onchange="gridChange(this);" style="margin-left: 1050px;width: 200px;" >
-        <option value="3" style="text-align: center;">3 x 3</option>
-        <option value="5" style="text-align: center;">5 x 5</option>
-        <option value="7" style="text-align: center;">7 x 7</option>
-    </select>
-    <div id='gridSpace'></div>
-
-    <div>
-        <button class="btn btn-primary" type="button" style="margin-left: 1050px; width: 200px;">Save</button>
+        <h1 class="display-4 text-center" id="map-value" value="{{ challenge.map }}">#{{ challenge.id }} {{ challenge.name }}</h1>
     </div>
 </div>
+<div class="head">
+    <div class="card m-4">
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col col-lg-6 text-center">
+                        <select id="gridSize" class="gridSize form-select form-select-md mb-4 text-center" onchange="gridChange(this);" disabled>
+                            <!--- To be changed to the value stored in the database-->
+                            <option value="{{ challenge.size }}">{{ challenge.size }} x {{ challenge.size }}</option>
+                        </select> 
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+            <p ></p>
+
+            <div id='gridSpace'></div>
+            
+            <div>
+
+                <div class="float-right mt-2">
+                    <button id="saveGrid" type="submit" class="btn btn-warning btn-lg px-5">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'alertmodal.html' %}
+</div>
+
+<script type="text/javascript"> 
+    let raw_map = "{{ challenge.map }}"
+    const map = raw_map.split(',');
+    const id = '{{challenge.id}}'
+</script>
 
 {% endblock content %}
 

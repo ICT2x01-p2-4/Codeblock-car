@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ConnectionsConfig(AppConfig):
+class CodingpageConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'connections'
+    name = 'codingPage'
