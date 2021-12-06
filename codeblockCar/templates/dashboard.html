@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ block.super }}{% endblock title %}
+
+{% block headscripts %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" type="text/css">
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+{% endblock headscripts %}
+
+{% block content %}
+<!--- Insert Body Content here -->
+<div class="head">
+  <div class="jumbotron">
+    <h1 class="display-4 text-center">Dashboard</h1>
+  </div>
+
+  <section class="home-section">
+    <div class="home-content">
+      <div class="overview-boxes">
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Distance Travelled</div>
+            <div class="number">{{ feedback.distance }}m</div>
+            <div class="indicator">
+              <i class='bx bx-up-arrow-alt'></i>
+              <span class="text">Increasing Connection</span>
+            </div>
+          </div>
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Speed</div>
+            <div class="number">{{ feedback.speed }}m/s</div>
+            <div class="indicator">
+              <i class='bx bx-up-arrow-alt'></i>
+              <span class="text">Stable</span>
+            </div>
+          </div>
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Data from Sensors</div>
+            <div class="number">No data received</div>
+            <div class="indicator">
+              <i class='bx bx-down-arrow-alt down'></i>
+              <span class="text">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sales-boxes">
+        <div class="recent-sales box">
+          <div class="title">Map</div>
+          <div id="TestGridSpace">
+          </div>
+        </div>
+        <div class="top-sales box">
+          <div class="title">Code being executed</div>
+          <textarea class="form-control" rows="15" disabled>{{ translation }}</textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+    </div>
+
+<script type="text/javascript">
+  // Map elements
+  let raw_map = "{{ challenge.map }}";
+  const map = raw_map.split(',');
+  const id = '{{challenge.id}}';
+  const map_size = '{{ challenge.size }}';
+  const test_commands = '{{ commands }}';
+
+  var lastClicked;
+  createGrid();
+
+  // Generates the grid for the map based on the map data
+  function clickableGrid(rows, cols) {
+      var i = 0;
+      var grid = document.createElement('table');
+
+      grid.className = 'grid';
+      for (var r = 0; r < rows; ++r) {
+          var tr = grid.appendChild(document.createElement('tr'));
+          for (var c = 0; c < cols; ++c) {
+              var cell = tr.appendChild(document.createElement('td'));
+              if (i == 0) {
+                  cell.innerHTML = '';
+                  cell.bgColor = 'green';
+                  i++;
+                  cell.value = i
+                  cell.id = 'grid-' + i.toString();
+              }
+              else if (i == (rows * cols) - 1) {
+                  cell.innerHTML = "";
+                  cell.bgColor = 'red';
+                  i++;
+                  cell.value = i
+                  cell.id = 'grid-' + i.toString();
+              }
+              else {
+                  console.log(i, map[i])
+                  if (map[i] == "1"){
+                      cell.className = "clicked";
+                      console.log("HIT" + i);
+                  }
+                  cell.innerHTML = ++i;
+                  cell.value = i
+                  cell.id = 'grid-' + i.toString();
+              }
+          }
+      }
+      return grid;
+  }
+
+  // creates the grid in the space defined in HTML element
+  function createGrid(e) {
+      var grid = clickableGrid(map_size, map_size, function (el, row, col, i){
+          console.log("You clicked on element:", el);
+          console.log("You clicked on row:", row);
+          console.log("You clicked on col:", col);
+          console.log("You clicked on item #:", i);
+
+          if ((row != 0 || col != 0) && (row != (3 - 1) || col != (3 - 1))) {
+              if (el.className == 'clicked'){
+                  el.className = '';
+              }
+              else {
+                  el.className = 'clicked';
+              }
+          }
+      });
+      document.getElementById('TestGridSpace').appendChild(grid);
+  }
+</script>
+
+
+{% endblock content %}
+
+{% block jsfile %}
+{{ block.super }}
+{% endblock jsfile %}
