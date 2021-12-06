@@ -64,6 +64,9 @@ python -m pip install -r requirements.txt
 
 ## 4. Migrate the Database
 ```sh
+# Ensure that you cd to the django project folder
+cd codeblockCar
+
 # Update the models
 python manage.py makemigrations
 
@@ -75,13 +78,15 @@ python manage.py migrate
 ```sh
 python manage.py loaddata commands.json
 python manage.py loaddata challenges.json
+python manage.py loaddata feedback.json
 ```
 
-## 6. Start the server
-```sh
-# Ensure that you cd to the django project folder
-cd codeblockCar
+## 6. Configure the secrets file
+The `.env` file with the secret key configured will be given in the zip file uploaded to xSite. 
+Please download the zip file and look for the `.env` file and place it in the `codeblockCar` folder.
 
+## 7. Start the server
+```sh
 # Start the web server
 python manage.py runserver
 ```
@@ -164,7 +169,10 @@ Sometimes when some configurations go wrong and you want to delete the data stor
 python manage.py shell
 
 from challenge.models import Challenge
+from codingPage.models import Command, Log
 Challenge.objects.all().delete()
+Command.objects.all().delete()
+Log.objects.all().delete()
 ```
 
 Remember to reset the sequencing for the app so that the `id` starts from 1
@@ -173,6 +181,8 @@ Remember to reset the sequencing for the app so that the `id` starts from 1
 python manage.py dbshell
 
 UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='challenge_challenge';
+UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='codingPage_command';
+UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='codingPage_log';
 .exit
 ```
 
@@ -204,6 +214,10 @@ TODO
 ------------
 
 # Changelog
+
+## v0.8
+- `dashboard` is stable
+  - Implemented templating for all data to be displayed
 
 ## v0.7
 - `dashboard` implemented

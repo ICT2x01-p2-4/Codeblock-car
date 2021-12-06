@@ -21,7 +21,7 @@
         <div class="box">
           <div class="right-side">
             <div class="box-topic">Distance Travelled</div>
-            <div class="number">cm</div>
+            <div class="number">{{ feedback.distance }}m</div>
             <div class="indicator">
               <i class='bx bx-up-arrow-alt'></i>
               <span class="text">Increasing Connection</span>
@@ -31,7 +31,7 @@
         <div class="box">
           <div class="right-side">
             <div class="box-topic">Speed</div>
-            <div class="number">m/s</div>
+            <div class="number">{{ feedback.speed }}m/s</div>
             <div class="indicator">
               <i class='bx bx-up-arrow-alt'></i>
               <span class="text">Stable</span>
@@ -58,7 +58,7 @@
         </div>
         <div class="top-sales box">
           <div class="title">Code being executed</div>
-
+          <textarea class="form-control" rows="15" disabled>{{ translation }}</textarea>
         </div>
       </div>
     </div>

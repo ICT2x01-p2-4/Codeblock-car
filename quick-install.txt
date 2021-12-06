@@ -13,4 +13,8 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py loaddata commands.json
 python manage.py loaddata challenges.json
+python manage.py loaddata feedback.json
+
+============= Ensure you have the .env file placed in your directory ==============
+
 python manage.py runserver

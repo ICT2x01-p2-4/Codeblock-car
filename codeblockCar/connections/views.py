@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from codingPage.models import Log
 from django.http.response import HttpResponseForbidden, HttpResponseNotFound
-
+from .models import Feedback
 
 def poll_db():
     """Polls the db for the latest data to be sent
@@ -34,4 +34,5 @@ def getInstructions(request):
 def receiveData(request, distance, speed):
     if request.method == "GET":
         # Log into database
-        pass
+        Feedback.objects.create(speed=speed, distance=distance)
+        return HttpResponse('OK')

@@ -1,0 +1,11 @@
+[
+    {
+        "model": "connections.feedback",
+        "pk": 1,
+        "fields": {
+            "speed": "1.3420",
+            "distance": "1.23",
+            "sent_datetime": "2021-12-06T22:14:36.197Z"
+        }
+    }
+]
