@@ -7,3 +7,17 @@ class Command(models.Model):
     
     def __str__(self) -> str:
         return '({:d}) {}'.format(self.code, self.action)
+
+
+class Log(models.Model):
+    data = models.CharField(max_length=50)
+    sent = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+    sent_datetime = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.data
+        
+    def update(self):
+        self.sent = True
+        return self.__str__
