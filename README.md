@@ -62,7 +62,11 @@ python -m pip install -r requirements.txt
 ```
 > [Reconfiguring requirements.txt](https://code.visualstudio.com/docs/python/environments)
 
-## 4. Migrate the Database
+## 4. Configure the secrets file
+The `.env` file with the secret key configured will be given in the zip file uploaded to xSite. 
+Please download the zip file and look for the `.env` file and place it in the `codeblockCar` folder.
+
+## 5. Migrate the Database
 ```sh
 # Ensure that you cd to the django project folder
 cd codeblockCar
@@ -74,16 +78,12 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-## 5. Load the databases
+## 6. Load the databases
 ```sh
 python manage.py loaddata commands.json
 python manage.py loaddata challenges.json
 python manage.py loaddata feedback.json
 ```
-
-## 6. Configure the secrets file
-The `.env` file with the secret key configured will be given in the zip file uploaded to xSite. 
-Please download the zip file and look for the `.env` file and place it in the `codeblockCar` folder.
 
 ## 7. Start the server
 ```sh
