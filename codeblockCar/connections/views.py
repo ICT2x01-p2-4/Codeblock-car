@@ -20,6 +20,22 @@ def poll_db():
 
 def getInstructions(request):
     if request.method == "GET":
+        # Retrieve commands from commands text file
+        file_command = open('connections/commands.txt','r')
+        commands = file_command.read()
+        file_command.close()
+
+        # Clear the file on every read 
+        file_command = open('connections/commands.txt', 'r+')
+        file_command.truncate(0)
+        file_command.write("")
+        file_command.close()
+
+        payload = {
+            'commands': commands
+        }
+        return render(request, 'commands.html',payload)
+      
         # Retrieve data from db
         data_to_send = poll_db()
         
