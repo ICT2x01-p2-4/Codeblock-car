@@ -21,6 +21,29 @@ function selectColour(id) {
         return 160;
     }
 }
+/**
+ * Function to get a value in the Cookie
+ * 
+ * @param {string} name
+ * @return {string} The value of the Cookie variable
+ */
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+// Get the csrf token for POST request
+const csrftoken = getCookie('csrftoken');
 
 /**
  * Generates a block object used for initializing Blockly Blocks.
@@ -114,7 +137,36 @@ $('#send-command').on('show.bs.modal', function (event) {
     // Update modals content
     var modal = $(this)
 
-    // Update modal with code generated
+    // Update modal with confirmation
     modal.find('.modal-body p').text("Are you sure you want to send commands?")
+    
 })
-  
+
+$('.confirmSendCommands').on('click', function (e){
+
+
+    console.log("HIt")
+    Blockly.Python.addReservedWords('code');
+    var code = Blockly.Python.workspaceToCode(workspace);
+    console.log(code)
+    
+    $.ajax({
+        type: "POST",
+        url: "",
+        headers: {'X-CSRFToken': csrftoken},
+        mode: 'same-origin',
+        data: {
+            "commands": code
+        },
+        error: function () {
+            // Show error message when unexpected errors occur
+            updateAlert("Error", "Error");
+        },
+        success: function () {
+            // updateAlert("Success!", "The command has been sent");
+            // setTimeout(function() {
+            //     window.location.href='/challenge';
+            // }, 1600);
+        }
+    });
+})

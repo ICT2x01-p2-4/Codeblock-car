@@ -24,4 +24,5 @@ urlpatterns = [
     path('challenge/',include('challenge.urls')),
     path('', include('student.urls')),
     path('tutorial/',include('tutorial.urls')),
+    path('connections/',include('connections.urls'))
 ]

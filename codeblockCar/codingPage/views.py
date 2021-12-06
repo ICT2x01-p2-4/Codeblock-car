@@ -24,4 +24,10 @@ def index(request):
         return render(request,"codingPage.html", payload)
     
     elif request.method == 'POST':
-        pass
+    
+        command_file = open('connections/commands.txt', 'r+')
+        command_file.truncate(0)
+        command_file.write(request.POST.get("commands"))
+        command_file.close()
+
+        return render(request,"codingPage.html")
