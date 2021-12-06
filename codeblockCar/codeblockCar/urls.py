@@ -23,4 +23,5 @@ urlpatterns = [
     path('coding/', include('codingPage.urls')),
     path('challenge/',include('challenge.urls')),
     path('', include('student.urls')),
+    path('tutorial/',include('tutorial.urls')),
 ]

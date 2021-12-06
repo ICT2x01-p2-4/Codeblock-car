@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'challenge',
     'codingPage',
     'student',
+    'tutorial',
 ]
 
 MIDDLEWARE = [
