@@ -3,6 +3,6 @@ from . import views
 
 #URL Config
 urlpatterns = [
-    path('', views.tutorial, name="tutorial"),
-    
+    path('', views.getInstructions),
+    path('data/',views.getData),
 ]

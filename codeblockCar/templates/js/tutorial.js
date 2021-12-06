@@ -121,6 +121,7 @@ $('#send-command').on('show.bs.modal', function (event) {
 $('#testCommands').on('click',function (e) {
     var code = Blockly.Python.workspaceToCode(workspace);
     var modal = $(this)
+    
     console.log(modal.find('.modal-body p').text(code))
 })
 
