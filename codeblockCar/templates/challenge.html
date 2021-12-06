@@ -31,7 +31,6 @@
                     {{challenge.2}}
                 </td>
                 <td>
-                    <a href="{% url 'attempt_challenge' challenge.0 %}" class= "btn btn-primary">Attempt</a>
                     <a href="{% url 'edit' challenge.0 %}" class= "btn btn-warning">Edit</a>
                     <!-- Button trigger modal -->
                     <button type="button" value="{{ challenge.0 }}" class="btn btn-danger delete-button" data-toggle="modal" data-target="#confirm-delete">
