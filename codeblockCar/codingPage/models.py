@@ -16,10 +16,7 @@ class Log(models.Model):
     sent_datetime = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        if self.sent is True:
-            return 'Data sent on {}'.format(self.sent_datetime)
-        else:
-            return '{} Data not sent.'.format(self.created)
+        return self.data
         
     def update(self):
         self.sent = True

@@ -1,7 +1,43 @@
 from django.core.management.base import BaseCommand, CommandError
+from codingPage.models import Log
+from django.db.models.query import EmptyQuerySet
 import socket
 import threading
 import socketserver
+
+class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
+    def poll_db():
+        # Get all commands that have not been sent
+        logs = Log.objects.filter(sent=False)
+
+        # Prepare the commands for sending
+        data = []
+        for log in logs:
+            data.append(str(log))
+        
+        return data
+    
+    def handle(self):
+        # data = str(self.request.recv(1024), 'ascii')
+        # cur_thread = threading.current_thread()
+        # response = bytes("{}: {}".format(cur_thread.name, data), 'ascii')
+        # self.request.sendall(response)
+        receive = self.request.recv(1024).strip()
+        self.stdout.write('{} sent: {}'.format(self.client_address[0], receive))
+        if receive == 'ready':
+            data = self.poll_db()
+            # Ensure that there is data to send
+            if not isinstance(data, EmptyQuerySet):
+                # Send the data over
+                for d in data:
+                    self.request.sendall(d)
+        else:
+            # Received data from the car
+            pass
+            
+
+class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
+    pass
 
 class Command(BaseCommand):
     help = 'Starts the TCP server for sending commands and receiving feedback'
@@ -21,7 +57,6 @@ class Command(BaseCommand):
 
         server = ThreadedTCPServer((HOST, PORT), ThreadedTCPRequestHandler)
         with server:
-            # ip, port = server.server_address
             try:
                 # Start a thread with the server -- that thread will then start one
                 # more thread for each request
@@ -33,25 +68,3 @@ class Command(BaseCommand):
             except KeyboardInterrupt:
                 self.stdout.write(self.style.WARNING("Server shutdown... {} terminated.".format(server_thread.name)))
                 server.shutdown()
-            # client(ip, port, "Hello World 1")
-            # client(ip, port, "Hello World 2")
-            # client(ip, port, "Hello World 3")
-
-            # server.shutdown()
-    
-class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
-    def handle(self):
-        data = str(self.request.recv(1024), 'ascii')
-        cur_thread = threading.current_thread()
-        response = bytes("{}: {}".format(cur_thread.name, data), 'ascii')
-        self.request.sendall(response)
-
-class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
-    pass
-    
-def client(ip, port, message):
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-        sock.connect((ip, port))
-        sock.sendall(bytes(message, 'ascii'))
-        response = str(sock.recv(1024), 'ascii')
-        print("Received: {}".format(response))

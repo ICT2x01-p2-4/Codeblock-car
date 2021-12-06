@@ -185,7 +185,7 @@ $('#confirm-send').on('click', (e) => {
             updateAlert("Error", "Error");
         },
         success: function (response) {
-            updateAlert("Success!", "Testing code...");
+            updateAlert("Success!", "Sending Code...");
             console.log(response)
             // setTimeout(function() {}, 1600);
         }
