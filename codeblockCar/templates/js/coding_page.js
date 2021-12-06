@@ -345,7 +345,7 @@ function execute_test() {
             return 1
         }
         // Ensure that a wall is not hit
-        else if (next_cell.className === "clickable") {
+        else if (document.getElementById(next_cell).className === "clicked") {
             // Send alert message
             updateAlert("Bang!", "Oops! Your car bang the wall. Please try again...");
             document.getElementById(prev_cell).innerHTML = crash
