@@ -52,13 +52,16 @@ def test_code(request):
         return HttpResponseForbidden
 
 
-def index(request):
+def tutorial(request):
     # Ensure that the challenge is selected
     payload = init_payload(1, True)
     return render(request,"codingPage.html", payload)
 
 
 def attempt_challenge(request, challenge_id):
+    # Redirect to tutorial if 
+    if challenge_id == 1:
+        pass
     # Ensure that the challenge is selected
     payload = init_payload(challenge_id, False)
     return render(request,"codingPage.html", payload)
