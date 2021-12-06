@@ -9,27 +9,41 @@
 <!--- Insert Body Content here -->
 <div class="head">
     <div class="jumbotron">
-        <h1 class="display-4 text-center">Coding</h1>
+        <h1 class="display-4 text-center">
+            {% if isTutorial %}
+            Tutorial
+            {% else %}
+            Coding #{{ challenge.id }} {{ challenge.name }}
+            {% endif %}
+        </h1>
         <img src="https://developers.google.com/blockly/images/logos/logo_built_on.png" class="float-end" style="height: 50px; width: 150px" alt="https://developers.google.com/blockly">
     </div>
-    <table class="table">
-        <div id="blocklyDiv" style="height: 500px; width: 800px;">
-            <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-                <!-- <block type="lists_create_with"></block> -->
-                <block type="controls_repeat_ext">
-                    <value name="TIMES">
-                        <shadow type="math_number">
-                            <field name="NUM">5</field>
-                        </shadow>
-                    </value>
-                </block>
-                {% for command in blocks %}
-                <block type="{{ command.0 }}" id="{{ command.1 }}"></block>
-                {% endfor %}
-
-            </xml>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <div id="blocklyDiv" style="height: 500px; width: 800px;">
+                        <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+                            <!-- <block type="lists_create_with"></block> -->
+                            <block type="controls_repeat_ext">
+                                <value name="TIMES">
+                                    <shadow type="math_number">
+                                        <field name="NUM">3</field>
+                                    </shadow>
+                                </value>
+                            </block>
+                            {% for command in blocks %}
+                            <block type="{{ command.0 }}" id="{{ command.1 }}"></block>
+                            {% endfor %}
+                        </xml>
+                    </div>
+                </table>
+            </div>
+            <div class="col" id="TestGridSpace">
+                <h1 style = "text-align: center;">Map</h1>
+            </div>
         </div>
-    </table>
+    </div>
 
     <div class="container">
         <div class="row">
@@ -39,9 +53,16 @@
                     Check Code
                 </button>
             </div>
+            {% if isTutorial is False %}
             <div class="col-2">
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#send-command">
                     Send Commands
+                </button>
+            </div>
+            {% endif %}
+            <div class="col-2">
+                <button id="run-command" type="button" class="btn btn-info hidden">
+                    Run command
                 </button>
             </div>
         </div>
@@ -58,16 +79,17 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p class="pre-scrollable"></p>
+                    <textarea class="form-control" rows="7" disabled></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Run Test</button>
+                    <button id="test-code"type="button" class="btn btn-primary" data-dismiss="modal">Run Test</button>
                 </div>
             </div>
         </div>
     </div>
 
+    {% if isTutorial is False %}
     <!-- Modal -->
     <div class="modal fade" id="send-command" tabindex="-1" role="dialog" aria-labelledby="send-command" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -83,7 +105,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+                    <button id="confirm-send" type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@
         "model": "codingPage.command",
         "pk": 2,
         "fields": {
-            "action": "Move Left",
+            "action": "Turn Left",
             "code": 2
         }
     },
@@ -19,7 +19,7 @@
         "model": "codingPage.command",
         "pk": 3,
         "fields": {
-            "action": "Move Right",
+            "action": "Turn Right",
             "code": 3
         }
     },
