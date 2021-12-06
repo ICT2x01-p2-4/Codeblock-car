@@ -1,8 +1,8 @@
 from django.urls import path
 from . import views
 
-#URL Config
+# URL Config
 urlpatterns = [
-    path('', views.getInstructions),
-    path('data/',views.getData),
+    path('', views.getInstructions, name="get_instructions"),
+    path('data/?dist=<str:distance>&speed=<str:speed>', views.receiveData, name="receive_data"),
 ]
