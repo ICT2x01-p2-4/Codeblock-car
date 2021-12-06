@@ -205,6 +205,13 @@ TODO
 
 # Changelog
 
+## v0.6
+- `codingPage` code check simulator done
+  - Added id tags to values to enable tracking grid cells
+  - Updated template linker to CDN for Bootstrap images
+  - Added js code for simulator to work
+  - Added images to indicate actions taken in each cell of grid
+
 ## v0.5
 - `Tutorial` integrated
   - Refactored to be under codingPage app
