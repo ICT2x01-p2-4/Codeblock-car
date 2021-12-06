@@ -10,26 +10,42 @@
 <div class="head">
     <div class="jumbotron">
         <h1 class="display-4 text-center">Coding</h1>
-        <img src="https://developers.google.com/blockly/images/logos/logo_built_on.png" class="float-end" style="height: 50px; width: 150px" alt="https://developers.google.com/blockly">
+        <img src="https://developers.google.com/blockly/images/logos/logo_built_on.png" class="float-end"
+            style="height: 50px; width: 150px" alt="https://developers.google.com/blockly">
     </div>
-    <table class="table">
-        <div id="blocklyDiv" style="height: 500px; width: 800px;">
-            <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-                <!-- <block type="lists_create_with"></block> -->
-                <block type="controls_repeat_ext">
-                    <value name="TIMES">
-                        <shadow type="math_number">
-                            <field name="NUM">5</field>
-                        </shadow>
-                    </value>
-                </block>
-                {% for command in blocks %}
-                <block type="{{ command.0 }}" id="{{ command.1 }}"></block>
-                {% endfor %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <div id="blocklyDiv" style="height: 500px; width: 800px;">
 
-            </xml>
+                        <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+                            <!-- <block type="lists_create_with"></block> -->
+                            <block type="controls_repeat_ext">
+                                <value name="TIMES">
+                                    <shadow type="math_number">
+                                        <field name="NUM">5</field>
+                                    </shadow>
+                                </value>
+                            </block>
+                            {% for command in blocks %}
+                            <block type="{{ command.0 }}" id="{{ command.1 }}"></block>
+                            {% endfor %}
+
+                        </xml>
+
+
+                    </div>
+
+                </table>
+
+            </div>
+            <div class="col" id="tutGridSpace">
+                <h1 style = "text-align: center;">Map</h1>
+            </div>
         </div>
-    </table>
+    </div>
+
 
     <div class="container">
         <div class="row">
@@ -44,11 +60,13 @@
                     Send Commands
                 </button>
             </div>
+
         </div>
     </div>
-  
+
     <!-- Modal -->
-    <div class="modal fade" id="code-checker" tabindex="-1" role="dialog" aria-labelledby="code-checker" aria-hidden="true">
+    <div class="modal fade" id="code-checker" tabindex="-1" role="dialog" aria-labelledby="code-checker"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -62,14 +80,15 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Run Test</button>
+                    <button id="testCommands" type="button" class="btn btn-primary" data-dismiss="modal">Run Test</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="send-command" tabindex="-1" role="dialog" aria-labelledby="send-command" aria-hidden="true">
+    <div class="modal fade" id="send-command" tabindex="-1" role="dialog" aria-labelledby="send-command"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -89,8 +108,15 @@
         </div>
     </div>
 
+
 </div>
 
+<script type="text/javascript">
+    let raw_map = "{{ challenge.map }}"
+    const map = raw_map.split(',');
+    const id = '{{challenge.id}}'
+    console.log(id)
+</script>
 {% endblock content %}
 
 {% block jsfile %}
