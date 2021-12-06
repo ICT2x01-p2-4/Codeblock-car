@@ -31,6 +31,7 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'challenge',
     'codingPage',
     'student',
+    'dashboard',
 ]
 
 MIDDLEWARE = [

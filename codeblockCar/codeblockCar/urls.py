@@ -18,10 +18,9 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 
 urlpatterns = [
-
-    path('admin/', admin.site.urls),
     path('coding/', include('codingPage.urls')),
     path('challenge/',include('challenge.urls')),
     path('', include('student.urls')),
     path('connections/',include('connections.urls')),
+    path('dashboard/',include('dashboard.urls')),
 ]

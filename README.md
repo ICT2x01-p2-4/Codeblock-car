@@ -205,6 +205,17 @@ TODO
 
 # Changelog
 
+## v0.7
+- `dashboard` implemented
+  - Added map to dashboard
+  - Updated dashboard links
+  - Dashboard template added in
+- `codingPage` updated with new model feature
+  - Link Logs to challenge_id with foreign key
+  - Able to tie logs to a challenge
+- Removed `admin` feature built in Django
+  - Removed unused app admin
+
 ## v0.6
 - `codingPage` code check simulator done
   - Added id tags to values to enable tracking grid cells

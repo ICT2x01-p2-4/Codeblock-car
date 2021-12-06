@@ -41,13 +41,19 @@ def test_code(request):
     if request.method == 'POST':
         # Execute the code to generate data to be sent to car
         code = request.POST['code']
-        data_tosend = generate_instructions(code)
+        id = request.POST['challenge_id']
+        data_to_send = generate_instructions(code)
         
-        if request.POST['log']:
+        print('LOVLEY==================', request.POST['log'], type(request.POST['log']))
+        
+        # Get the challenge object based on the id to link with the log object
+        c = Challenge.objects.get(id=id)
+        
+        if request.POST['log'] == "true":
             # Add this data to the logs
-            Log.objects.create(data = data_tosend)
+            Log.objects.create(data = data_to_send, challenge = c)
         
-        return HttpResponse(data_tosend)
+        return HttpResponse(data_to_send)
     else:
         return HttpResponseForbidden
 

@@ -169,7 +169,6 @@ $('#send-command').on('show.bs.modal', function (event) {
 });
 
 $('#confirm-send').on('click', (e) => {
-
     e.preventDefault();
     $.ajax({
         type: "POST",
@@ -179,7 +178,8 @@ $('#confirm-send').on('click', (e) => {
         data: {
             // Get the data to be sent
             "code": getCode(),
-            "log": true
+            "log": true,
+            "challenge_id": id
         },
         error: function () {
             // Show error message when unexpected errors occur
@@ -215,6 +215,7 @@ $('#test-code').on('click', (e) => {
         updateAlert("Error", "Nothing inside the workspace!");
     }
     else {
+        console.log('Challenge #' + id.toString())
         e.preventDefault();
         $.ajax({
             type: "POST",
@@ -224,7 +225,8 @@ $('#test-code').on('click', (e) => {
             data: {
                 // Get the data to be sent
                 "code": getCode(),
-                "log": false
+                "log": false,
+                "challenge_id": id
             },
             error: function () {
                 // Show error message when unexpected errors occur
