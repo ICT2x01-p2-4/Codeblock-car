@@ -1944,7 +1944,7 @@ a {
   	justify-content: center
 }
 
-#TestGridSpace .grid td {
+#tutGridSpace .grid td {
 	cursor:pointer;
     width:80px; height:80px;
     border:1px solid #ccc;

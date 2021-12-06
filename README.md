@@ -205,16 +205,6 @@ TODO
 
 # Changelog
 
-## v0.5
-- `Tutorial` integrated
-  - Refactored to be under codingPage app
-  - Pending function for test coding to move the car
-- Added `TCPServer` as separate module
-  - Works to establish connections
-  - Skeleton code in, not completed
-- Added `Log` model to store logs
-- Completed `codingPage` processing and logging of blockly generated code
-
 ## v0.4.1
 - Added secret key management
 - Updated `requirements.txt`

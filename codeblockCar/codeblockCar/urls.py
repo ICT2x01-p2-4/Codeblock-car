@@ -14,7 +14,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.db import connection
 from django.urls import path, include
 from django.views.generic import RedirectView
 
@@ -25,5 +24,4 @@ urlpatterns = [
     path('challenge/',include('challenge.urls')),
     path('', include('student.urls')),
     path('tutorial/',include('tutorial.urls')),
-    path('connections/',include('connections.urls')),
 ]
