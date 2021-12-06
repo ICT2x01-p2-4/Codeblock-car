@@ -51,7 +51,7 @@ def edit(request, challenge_id):
     if request.method == "GET":
         # Load the challenge object to be edited
         challenge = Challenge.objects.get(id=challenge_id)
-        
+        print(challenge)
         payload = {
             'title': 'Edit Challenge',
             'jsfile': 'edit_challenge',
