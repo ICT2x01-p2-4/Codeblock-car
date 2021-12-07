@@ -44,8 +44,6 @@ def test_code(request):
         id = request.POST['challenge_id']
         data_to_send = generate_instructions(code)
         
-        print('LOVLEY==================', request.POST['log'], type(request.POST['log']))
-        
         # Get the challenge object based on the id to link with the log object
         c = Challenge.objects.get(id=id)
         
