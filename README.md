@@ -293,6 +293,9 @@ connections\views.py                        21      6    71%
 TOTAL                                       69     10    86%
 ```
 
+### Video demo
+[![Watch the video](https://github.com/ICT2x01-p2-4/Codeblock-car/blob/master/media/coverage.mp4)](https://github.com/ICT2x01-p2-4/Codeblock-car/blob/master/media/coverage.mp4)
+
 ------------
 
 # Changelog
