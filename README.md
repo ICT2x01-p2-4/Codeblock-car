@@ -206,7 +206,7 @@ python manage.py loaddata databasedump.json
 # Testing
 
 ## User acceptance Test (UAT)
-TODO
+[![Watch the video](https://www.youtube.com/watch?v=rdrFcNsbZDU)](https://www.youtube.com/embed/rdrFcNsbZDU)
 
 ## Whitebox Testing
 The testing suite is run using the Django Unit Testing framework where tests are written inside the app itself.
@@ -292,9 +292,6 @@ connections\views.py                        21      6    71%
 ------------------------------------------------------------
 TOTAL                                       69     10    86%
 ```
-
-### Video demo
-[![Watch the video](https://github.com/ICT2x01-p2-4/Codeblock-car/blob/master/media/coverage.mp4)](https://github.com/ICT2x01-p2-4/Codeblock-car/blob/master/media/coverage.mp4)
 
 ------------
 
